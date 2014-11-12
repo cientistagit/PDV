@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package view;
 
-import controller.frameworkGerenciaTela.*;
+import controller.frameworkGerenciaTela.ScreensController;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
