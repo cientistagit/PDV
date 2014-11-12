@@ -5,6 +5,8 @@
  */
 package controller;
 
+import controller.frameworkGerenciaTela.ControlledScreen;
+import controller.frameworkGerenciaTela.ScreensController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -17,13 +19,15 @@ import javafx.scene.control.Label;
  *
  * @author Jailton
  */
-public class LoginController implements Initializable {
+public class LoginController implements Initializable, ControlledScreen {
     
     @FXML
     private Label labelMsg;
     
     @FXML
     private Button btnLogin;
+    
+    ScreensController myController;
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
@@ -35,5 +39,10 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @Override
+    public void setScreenParent(ScreensController screenPage) {
+        myController = screenPage;
+    }
     
 }
