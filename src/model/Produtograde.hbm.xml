@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/11/2014 11:53:32 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Produtograde" table="produtograde" catalog="pdv" optimistic-lock="version">
+        <id name="idProdutoGrade" type="java.lang.Integer">
+            <column name="id_produto_grade" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cor" class="model.Cor" fetch="select">
+            <column name="cor_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="produto" class="model.Produto" fetch="select">
+            <column name="produto_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tamanho" class="model.Tamanho" fetch="select">
+            <column name="tamanho_id" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

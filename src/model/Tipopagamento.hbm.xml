@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/11/2014 11:53:32 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Tipopagamento" table="tipopagamento" catalog="pdv" optimistic-lock="version">
+        <id name="idTipoPagamento" type="java.lang.Integer">
+            <column name="id_tipo_pagamento" />
+            <generator class="identity" />
+        </id>
+        <property name="descricao" type="string">
+            <column name="descricao" length="45" not-null="true" />
+        </property>
+        <set name="pagamentovendas" table="pagamentovenda" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tipo_pagamento_id" not-null="true" />
+            </key>
+            <one-to-many class="model.Pagamentovenda" />
+        </set>
+    </class>
+</hibernate-mapping>

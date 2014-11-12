@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/11/2014 11:53:32 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Venda" table="venda" catalog="pdv" optimistic-lock="version">
+        <id name="idVenda" type="java.lang.Integer">
+            <column name="id_venda" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="caixaaberturafechamento" class="model.Caixaaberturafechamento" fetch="select">
+            <column name="caixa_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuario" class="model.Usuario" fetch="select">
+            <column name="usuario_id" not-null="true" />
+        </many-to-one>
+        <property name="dataVenda" type="timestamp">
+            <column name="data_venda" length="19" not-null="true" />
+        </property>
+        <property name="vendedorId" type="string">
+            <column name="vendedor_id" length="45" not-null="true" />
+        </property>
+        <property name="dataCancelamento" type="timestamp">
+            <column name="data_cancelamento" length="19" />
+        </property>
+        <property name="numeroCupomFiscal" type="string">
+            <column name="numero_cupom_fiscal" length="45" />
+        </property>
+        <set name="pagamentovendas" table="pagamentovenda" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="venda_id" not-null="true" />
+            </key>
+            <one-to-many class="model.Pagamentovenda" />
+        </set>
+        <set name="vendaitems" table="vendaitem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="venda_id" not-null="true" />
+            </key>
+            <one-to-many class="model.Vendaitem" />
+        </set>
+    </class>
+</hibernate-mapping>

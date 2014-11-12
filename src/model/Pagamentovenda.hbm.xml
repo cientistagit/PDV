@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/11/2014 11:53:32 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Pagamentovenda" table="pagamentovenda" catalog="pdv" optimistic-lock="version">
+        <id name="idPagamentoVenda" type="java.lang.Integer">
+            <column name="id_pagamento_venda" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tipopagamento" class="model.Tipopagamento" fetch="select">
+            <column name="tipo_pagamento_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="venda" class="model.Venda" fetch="select">
+            <column name="venda_id" not-null="true" />
+        </many-to-one>
+        <property name="valor" type="big_decimal">
+            <column name="valor" precision="10" not-null="true" />
+        </property>
+        <property name="numeroParcelas" type="java.lang.Integer">
+            <column name="numero_parcelas" />
+        </property>
+    </class>
+</hibernate-mapping>

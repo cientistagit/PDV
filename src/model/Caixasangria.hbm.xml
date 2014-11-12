@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/11/2014 11:53:32 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Caixasangria" table="caixasangria" catalog="pdv" optimistic-lock="version">
+        <id name="idCaixaSangria" type="java.lang.Integer">
+            <column name="id_caixa_sangria" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="caixaaberturafechamento" class="model.Caixaaberturafechamento" fetch="select">
+            <column name="caixa_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuario" class="model.Usuario" fetch="select">
+            <column name="usuario_id" not-null="true" />
+        </many-to-one>
+        <property name="valorRetirado" type="big_decimal">
+            <column name="valor_retirado" precision="10" not-null="true" />
+        </property>
+        <property name="data" type="timestamp">
+            <column name="data" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

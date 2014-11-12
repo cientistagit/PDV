@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/11/2014 11:53:32 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Colaborador" table="colaborador" catalog="pdv" optimistic-lock="version">
+        <id name="idColaborador" type="java.lang.Integer">
+            <column name="id_colaborador" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cargo" class="model.Cargo" fetch="select">
+            <column name="corgo_id" not-null="true" />
+        </many-to-one>
+        <property name="cpf" type="string">
+            <column name="cpf" length="11" not-null="true" />
+        </property>
+        <property name="nome" type="string">
+            <column name="nome" length="100" not-null="true" />
+        </property>
+        <set name="usuarios" table="usuario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="colaborador_id" not-null="true" />
+            </key>
+            <one-to-many class="model.Usuario" />
+        </set>
+    </class>
+</hibernate-mapping>

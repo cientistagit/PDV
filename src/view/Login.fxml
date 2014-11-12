@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="307.0" prefWidth="493.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+    <children>
+        <Button id="btnLogin" fx:id="button" defaultButton="true" layoutX="229.0" layoutY="239.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="70.0" text="Login" />
+        <Label id="labelMsg" fx:id="label" layoutX="177.0" layoutY="218.0" minHeight="16" minWidth="69" prefHeight="33.0" prefWidth="149.0" text="Login/Senha incorreta!" textFill="#dd0808" visible="false" />
+      <TextField id="txtLogin" layoutX="177.0" layoutY="139.0" promptText="Login" />
+      <PasswordField id="txtSenha" layoutX="177.0" layoutY="183.0" promptText="Senha" />
+      <ImageView id="imgLogin" fitHeight="80.0" fitWidth="93.0" layoutX="200.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
+    </children>
+</AnchorPane>
