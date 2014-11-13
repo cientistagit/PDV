@@ -14,6 +14,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import model.Usuario;
+import view.ScreensFramework;
 
 /**
  *
@@ -27,12 +31,31 @@ public class LoginController implements Initializable, ControlledScreen {
     @FXML
     private Button btnLogin;
     
+    @FXML
+    private TextField txtLogin;
+    
+    @FXML
+    private PasswordField txtSenha;
+    
     ScreensController myController;
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
        //evento login -  added by Marcus Alexandre 13/11/2014
        // Teste 2
+        Usuario usuario = new Usuario();
+        usuario.setLogin(txtLogin.getText());
+        usuario.setSenha(txtSenha.getText());
+        if (usuario.validarLogin())
+        {
+            myController.setScreen(ScreensFramework.screen2ID);
+        }
+        else
+        {
+            labelMsg.setVisible(true);
+            txtLogin.clear();
+            txtSenha.clear();
+        }
         
     }
     
