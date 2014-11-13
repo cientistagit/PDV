@@ -33,7 +33,6 @@ public class LoginController implements Initializable, ControlledScreen {
     private void handleButtonAction(ActionEvent event) {
     
         // Teste de Conexão, GitHub
-        // Teste 2
        
     }
     
