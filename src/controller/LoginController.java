@@ -31,7 +31,7 @@ public class LoginController implements Initializable, ControlledScreen {
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
-       
+       //evento login -  added by Marcus Alexandre 13/11/2014
         
     }
     
