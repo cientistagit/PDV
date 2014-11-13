@@ -31,8 +31,9 @@ public class LoginController implements Initializable, ControlledScreen {
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
+    
+        // Teste de Conexão, GitHub
        
-        
     }
     
     @Override
