@@ -16,11 +16,11 @@ import javafx.stage.Stage;
  * @author Jailton
  */
 public class ScreensFramework extends Application {
-    
-    public static String screen1ID = "login";
-    public static String screen1File = "/view/Login.fxml";
-    public static String screen2ID = "principal";
-    public static String screen2File = "/view/Principal.fxml";
+    //Colocar o nome da tela (id) no nome da variável .
+    public static String telaLogin = "login";
+    public static String telaLoginFile = "/view/Login.fxml";
+    public static String telaCaixa = "caixa";
+    public static String telaCaixaFile = "/view/Caixa.fxml";
     //public static String screen3ID = "screen3";
     //public static String screen3File = "Screen3.fxml";
     
@@ -30,11 +30,11 @@ public class ScreensFramework extends Application {
         
         ScreensController mainContainer = new ScreensController();
        
-        mainContainer.loadScreen(ScreensFramework.screen1ID, ScreensFramework.screen1File);
-        mainContainer.loadScreen(ScreensFramework.screen2ID, ScreensFramework.screen2File);
+        mainContainer.loadScreen(ScreensFramework.telaLogin, ScreensFramework.telaLoginFile);
+        mainContainer.loadScreen(ScreensFramework.telaCaixa, ScreensFramework.telaCaixaFile);
         //mainContainer.loadScreen(ScreensFramework.screen3ID, ScreensFramework.screen3File);
         
-        mainContainer.setScreen(ScreensFramework.screen1ID);
+        mainContainer.setScreen(ScreensFramework.telaLogin);
         
         Group root = new Group();
         root.getChildren().addAll(mainContainer);
