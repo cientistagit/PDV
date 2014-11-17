@@ -5,10 +5,7 @@
  */
 package model.persistencia;
 
-import java.util.Iterator;
-import java.util.List;
 import model.Usuario;
-import model.persistencia.NewHibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
