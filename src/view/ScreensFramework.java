@@ -23,6 +23,8 @@ public class ScreensFramework extends Application {
     public static String telaCaixaFile = "/view/Caixa.fxml";
     public static String telaConsulta = "screen3";
     public static String telaConsultaFile = "Screen3.fxml";
+    public static String telaVenda = "venda";
+    public static String telaVendaFile = "/view/Venda.fxml";
     
     
     @Override
