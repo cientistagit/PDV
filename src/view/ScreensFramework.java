@@ -21,8 +21,8 @@ public class ScreensFramework extends Application {
     public static String screen1File = "/view/Login.fxml";
     public static String screen2ID = "principal";
     public static String screen2File = "/view/Principal.fxml";
-    //public static String screen3ID = "screen3";
-    //public static String screen3File = "Screen3.fxml";
+    public static String screen3ID = "consulta";
+    public static String screen3File = "/view/Consulta.fxml";
     
     
     @Override
@@ -32,7 +32,7 @@ public class ScreensFramework extends Application {
        
         mainContainer.loadScreen(ScreensFramework.screen1ID, ScreensFramework.screen1File);
         mainContainer.loadScreen(ScreensFramework.screen2ID, ScreensFramework.screen2File);
-        //mainContainer.loadScreen(ScreensFramework.screen3ID, ScreensFramework.screen3File);
+        mainContainer.loadScreen(ScreensFramework.screen3ID, ScreensFramework.screen3File);
         
         mainContainer.setScreen(ScreensFramework.screen1ID);
         
