@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CaixaController">
+   <children>
+      <Button fx:id="btnAbrirCaixa" layoutX="64.0" layoutY="54.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="198.0" text="ABRIR CAIXA" />
+      <Button fx:id="btnFecharCaixa" layoutX="320.0" layoutY="54.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="198.0" text="FECHAR CAIXA" />
+      <Button fx:id="btnSuprimento" layoutX="64.0" layoutY="206.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="198.0" text="SUPRIMENTO" />
+      <Button fx:id="btnSangria" layoutX="320.0" layoutY="206.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="198.0" text="SANGRIA" />
+   </children>
+</AnchorPane>
