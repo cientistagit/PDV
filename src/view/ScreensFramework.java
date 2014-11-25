@@ -25,6 +25,8 @@ public class ScreensFramework extends Application {
     public static String telaConsultaFile = "Screen3.fxml";
     public static String telaVenda = "venda";
     public static String telaVendaFile = "/view/Venda.fxml";
+    public static String telaPagamento = "pagamento";
+    public static String telaPagamentoFile = "/view/Pagamento.fxml";
     
     
     @Override
@@ -35,6 +37,7 @@ public class ScreensFramework extends Application {
         mainContainer.loadScreen(ScreensFramework.telaLogin, ScreensFramework.telaLoginFile);
         mainContainer.loadScreen(ScreensFramework.telaCaixa, ScreensFramework.telaCaixaFile);
         mainContainer.loadScreen(ScreensFramework.telaConsulta, ScreensFramework.telaConsultaFile);
+        mainContainer.loadScreen(ScreensFramework.telaConsulta, ScreensFramework.telaPagamentoFile);
         mainContainer.loadScreen(ScreensFramework.telaVenda, ScreensFramework.telaVendaFile);
         
         mainContainer.setScreen(ScreensFramework.telaVenda);
