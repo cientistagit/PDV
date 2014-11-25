@@ -8,7 +8,6 @@ package controller;
 import controller.frameworkGerenciaTela.ControlledScreen;
 import controller.frameworkGerenciaTela.ScreensController;
 import java.math.BigDecimal;
-import java.math.MathContext;
 import model.Produto;
 import java.net.URL;
 import java.util.Date;
@@ -21,6 +20,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javax.swing.JOptionPane;
 import model.Colaborador;
+import model.TabelaVenda;
 import model.Usuario;
 import model.Venda;
 import model.Vendaitem;
@@ -33,7 +33,7 @@ import model.Vendaitem;
 public class VendaController implements Initializable, ControlledScreen {
 
     @FXML
-    private TableView<Produto> tableVenda;
+    private TableView<TabelaVenda> tableVenda;
     @FXML
     private Label total;
     @FXML
@@ -67,10 +67,10 @@ public class VendaController implements Initializable, ControlledScreen {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO                
-        tableVenda.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("idProduto"));
-        tableVenda.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("descricao"));
-        tableVenda.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("valorVenda"));
-        //tableVenda.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<> ("quantidade") );
+        tableVenda.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("id"));
+        tableVenda.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("produto"));
+        tableVenda.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("quantidade"));
+        tableVenda.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<> ("valorTotal") );
         //
         venda.setDataVenda(new Date(System.currentTimeMillis()));
         venda.setNumeroCupomFiscal(Integer.toString(new Random().nextInt(99999)));
@@ -96,15 +96,14 @@ public class VendaController implements Initializable, ControlledScreen {
             //
             p.setValorVenda(p.getValorVenda().multiply(BigDecimal.valueOf(Integer.parseInt(quantidade.getText().trim()))));
             //            
-            float d = (p.getValorVenda().floatValue() * Float.parseFloat(desconto.getText())) / 100;
-            d = p.getValorVenda().floatValue() - d;
-            p.setValorVenda(convertValue(d));
+            float d = (p.getValorVenda().floatValue() * Float.parseFloat(desconto.getText())) / 100;            
+            p.setValorVenda(p.getValorVenda().subtract(BigDecimal.valueOf(d)));
             //
             float valor = Float.parseFloat(total.getText().trim());
             valor += p.getValorVenda().floatValue();
-            total.setText(String.valueOf(convertValue(valor).floatValue()));
+            total.setText(String.valueOf(convertValue(valor)));
             //
-            saveItem(p, Integer.parseInt(quantidade.getText().trim()), Integer.parseInt(desconto.getText().trim()));
+            saveItem(p, Integer.parseInt(quantidade.getText().trim()), d);
             //
             clear();
         }
@@ -112,12 +111,12 @@ public class VendaController implements Initializable, ControlledScreen {
 
     @FXML
     private void handleDelItem() {
-        Produto it = tableVenda.getSelectionModel().getSelectedItem();
+        TabelaVenda it = tableVenda.getSelectionModel().getSelectedItem();
         if (it != null) {
             tableVenda.getItems().remove(it);
             float valor = Float.parseFloat(total.getText().trim());
-            valor -= it.getValorVenda().floatValue();
-            total.setText(String.valueOf(convertValue(valor).floatValue()));
+            valor -= Float.parseFloat(it.getValorTotal());
+            total.setText(String.valueOf(convertValue(valor)));
             clear();
         }
     }
@@ -158,20 +157,23 @@ public class VendaController implements Initializable, ControlledScreen {
         myController = screenPage;
     }
 
-    public BigDecimal convertValue(Float val) {
+    public float convertValue(Float val) {
         float v = val;
-        v = Math.round(v * 100) / 100f;
-        BigDecimal bd = new BigDecimal(val);
+        v = Math.round(v * 100) / 100f;        
 
-        return bd;
+        return v;
     }
 
-    public void saveItem(Produto p, int qtd, int desc) {
-        BigDecimal tot = p.getValorVenda().multiply(BigDecimal.valueOf(qtd));
+    public void saveItem(Produto p, int qtd, float desc) {
+        BigDecimal tot = p.getValorVenda();
+        BigDecimal valDesc = (BigDecimal.valueOf(desc));
+        //        
         //
-        Vendaitem vItem = new Vendaitem(p, this.venda, qtd, tot, BigDecimal.valueOf(desc));
+        TabelaVenda var = new TabelaVenda(p.getIdProduto(), p.getDescricao(), String.valueOf(convertValue(tot.floatValue())), qtd);
+        //
+        Vendaitem vItem = new Vendaitem(p, this.venda, qtd, tot, valDesc);
         venda.getVendaitems().add(vItem);
-        tableVenda.getItems().add(p);
+        tableVenda.getItems().add(var);
     }
 
 }

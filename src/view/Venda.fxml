@@ -12,17 +12,17 @@
       <TableView fx:id="tableVenda" prefHeight="402.0" prefWidth="381.0">
         <columns>
           <TableColumn fx:id="columId" prefWidth="54.0" text="ID" />
-          <TableColumn fx:id="columNome" prefWidth="174.0" text="NOME" />
-            <TableColumn fx:id="columValor" minWidth="0.0" prefWidth="67.0" text="VALOR" />
-            <TableColumn fx:id="columQtd" minWidth="0.0" prefWidth="84.0" text="QUANTIDADE" />
+          <TableColumn fx:id="columNome" prefWidth="159.0" text="NOME" />
+            <TableColumn fx:id="columQtd" minWidth="0.0" prefWidth="86.0" text="QUANTIDADE" />
+            <TableColumn fx:id="columValor" minWidth="0.0" text="VALOR" />
         </columns>
       </TableView>
       <TextField fx:id="idProduto" layoutX="434.0" layoutY="14.0" prefHeight="25.0" prefWidth="159.0" promptText="Código" />
-      <TextField fx:id="descricao" editable="false" layoutX="434.0" layoutY="50.0" prefHeight="25.0" prefWidth="159.0" promptText="Descrição"/>
-      <TextField fx:id="quantidade" layoutX="514.0" layoutY="123.0" prefHeight="25.0" prefWidth="77.0" promptText="Quantidade"/>
-      <TextField fx:id="valor" layoutX="514.0" layoutY="86.0" prefHeight="25.0" prefWidth="77.0" promptText="Valor"/>
-      <TextField fx:id="desconto" layoutX="514.0" layoutY="158.0" prefHeight="25.0" prefWidth="77.0" promptText="Desconto"/>
-      <CheckBox fx:id="checkDesconto" layoutX="484.0" layoutY="162.0" mnemonicParsing="false" onAction="#handleCheckDesconto" />
+      <TextField fx:id="descricao" editable="false" layoutX="434.0" layoutY="50.0" prefHeight="25.0" prefWidth="159.0" promptText="Descrição" />
+      <TextField fx:id="quantidade" layoutX="514.0" layoutY="123.0" prefHeight="25.0" prefWidth="77.0" promptText="Quantidade" />
+      <TextField fx:id="valor" layoutX="514.0" layoutY="86.0" prefHeight="25.0" prefWidth="77.0" promptText="Valor" />
+      <TextField fx:id="desconto" layoutX="514.0" layoutY="158.0" prefHeight="25.0" prefWidth="77.0" promptText="Desconto" />
+      <CheckBox fx:id="checkDesconto" layoutX="484.0" layoutY="162.0" mnemonicParsing="false" onAction="#handleCheckDesconto" selected="true" />
       <Button fx:id="addBt" layoutX="393.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleAddItem" text="Add Item" />
       <Button fx:id="delBt" layoutX="479.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleDelItem" text="Del Item" />
       <Label fx:id="total" layoutX="398.0" layoutY="311.0" prefHeight="67.0" prefWidth="183.0" text="0.00" textFill="#f20606" wrapText="true">
