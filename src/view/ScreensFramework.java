@@ -21,8 +21,8 @@ public class ScreensFramework extends Application {
     public static String telaLoginFile = "/view/Login.fxml";
     public static String telaCaixa = "caixa";
     public static String telaCaixaFile = "/view/Caixa.fxml";
-    public static String telaConsulta = "screen3";
-    public static String telaConsultaFile = "Screen3.fxml";
+    public static String telaConsulta = "consulta";
+    public static String telaConsultaFile = "/view/Consulta.fxml";
     public static String telaVenda = "venda";
     public static String telaVendaFile = "/view/Venda.fxml";
     public static String telaPagamento = "pagamento";
@@ -37,10 +37,10 @@ public class ScreensFramework extends Application {
         mainContainer.loadScreen(ScreensFramework.telaLogin, ScreensFramework.telaLoginFile);
         mainContainer.loadScreen(ScreensFramework.telaCaixa, ScreensFramework.telaCaixaFile);
         mainContainer.loadScreen(ScreensFramework.telaConsulta, ScreensFramework.telaConsultaFile);
-        mainContainer.loadScreen(ScreensFramework.telaConsulta, ScreensFramework.telaPagamentoFile);
+        mainContainer.loadScreen(ScreensFramework.telaPagamento, ScreensFramework.telaPagamentoFile);
         mainContainer.loadScreen(ScreensFramework.telaVenda, ScreensFramework.telaVendaFile);
         
-        mainContainer.setScreen(ScreensFramework.telaVenda);
+        mainContainer.setScreen(ScreensFramework.telaConsulta);
         
         Group root = new Group();
         root.getChildren().addAll(mainContainer);
