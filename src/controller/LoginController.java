@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import model.BLL.BLLUsuario;
 import model.Usuario;
 import view.ScreensFramework;
 
@@ -38,15 +39,13 @@ public class LoginController implements Initializable, ControlledScreen {
     private PasswordField txtSenha;
     
     ScreensController myController;
+    public Usuario usuarioLogin = null;
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
        //evento login -  added by Marcus Alexandre 13/11/2014
-       // Teste 2
-        Usuario usuario = new Usuario();
-        usuario.setLogin(txtLogin.getText());
-        usuario.setSenha(txtSenha.getText());
-        if (usuario.validarLogin())
+
+        if(BLLUsuario.validarLogin(txtLogin.getText(),txtSenha.getText()))
         {
             myController.setScreen(ScreensFramework.telaPrincipal);
         }

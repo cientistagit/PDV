@@ -98,13 +98,6 @@ public class Usuario  implements java.io.Serializable {
     }
 
 
-    
-    public boolean validarLogin(){
-    
-        DAOUsuario dAOUsuario = new DAOUsuario();
-        return dAOUsuario.validarLogin(this);
-    }
-
 }
 
 

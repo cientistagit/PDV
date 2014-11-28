@@ -17,6 +17,19 @@ import org.hibernate.Transaction;
  */
 public class DAOUsuario {
     
+    public Usuario buscar(String pLogin, String pSenha){
+        Session session = NewHibernateUtil.getSessionFactory().getCurrentSession();
+        
+        Usuario usuario = null;
+            session.beginTransaction(); // Abre-se uma transação    
+            String hql = "from Usuario u where u.login = :login and u.senha = :senha";
+            Query query = session.createQuery(hql);
+            query.setParameter("login", pLogin);
+            query.setParameter("senha", pSenha);
+            usuario = (Usuario) query.uniqueResult();                        
+        
+        return usuario;
+    }
     
     public boolean validarLogin(Usuario usuario){
         boolean result;
