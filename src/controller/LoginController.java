@@ -48,7 +48,7 @@ public class LoginController implements Initializable, ControlledScreen {
         usuario.setSenha(txtSenha.getText());
         if (usuario.validarLogin())
         {
-            myController.setScreen(ScreensFramework.telaCaixa);
+            myController.setScreen(ScreensFramework.telaPrincipal);
         }
         else
         {

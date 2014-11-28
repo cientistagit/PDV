@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -24,6 +25,7 @@ import model.TabelaVenda;
 import model.Usuario;
 import model.Venda;
 import model.Vendaitem;
+import view.ScreensFramework;
 
 /**
  * FXML Controller class
@@ -54,6 +56,9 @@ public class VendaController implements Initializable, ControlledScreen {
     private Button delBt;
     @FXML
     private Button search;
+    @FXML
+    private Button btnVoltar;
+
     //
     //
 
@@ -77,6 +82,11 @@ public class VendaController implements Initializable, ControlledScreen {
         venda.setUsuario(new Usuario(new Colaborador(null, "0000", "<STANDARD>"), null, null));
         venda.setVendaitems(new LinkedHashSet<Vendaitem>());
 
+    }
+    
+    @FXML
+    void btnVoltar_Click(ActionEvent event) {
+        myController.setScreen(ScreensFramework.telaPrincipal);
     }
 
     @FXML

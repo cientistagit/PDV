@@ -17,30 +17,34 @@ import javafx.stage.Stage;
  */
 public class ScreensFramework extends Application {
     //Colocar o nome da tela (id) no nome da variável .
+    //a variável do caminho da file é privada e final (não se modifica), só é utilizada dentro da classe.
     public static String telaLogin = "login";
-    public static String telaLoginFile = "/view/Login.fxml";
+    private static final String telaLoginFile = "/view/Login.fxml";
+    public static String telaPrincipal = "principal";
+    private static final String telaPrincipalFile = "/view/Principal.fxml";
     public static String telaCaixa = "caixa";
-    public static String telaCaixaFile = "/view/Caixa.fxml";
+    private static final String telaCaixaFile = "/view/Caixa.fxml";
     public static String telaConsulta = "consulta";
-    public static String telaConsultaFile = "/view/Consulta.fxml";
+    private static final String telaConsultaFile = "/view/Consulta.fxml";
     public static String telaVenda = "venda";
-    public static String telaVendaFile = "/view/Venda.fxml";
+    private static final String telaVendaFile = "/view/Venda.fxml";
     public static String telaPagamento = "pagamento";
-    public static String telaPagamentoFile = "/view/Pagamento.fxml";
+    private static final String telaPagamentoFile = "/view/Pagamento.fxml";
     
     
     @Override
     public void start(Stage primaryStage) {
         
         ScreensController mainContainer = new ScreensController();
-       
+               
         mainContainer.loadScreen(ScreensFramework.telaLogin, ScreensFramework.telaLoginFile);
+        mainContainer.loadScreen(ScreensFramework.telaPrincipal, ScreensFramework.telaPrincipalFile);
         mainContainer.loadScreen(ScreensFramework.telaCaixa, ScreensFramework.telaCaixaFile);
         mainContainer.loadScreen(ScreensFramework.telaConsulta, ScreensFramework.telaConsultaFile);
         mainContainer.loadScreen(ScreensFramework.telaPagamento, ScreensFramework.telaPagamentoFile);
         mainContainer.loadScreen(ScreensFramework.telaVenda, ScreensFramework.telaVendaFile);
         
-        mainContainer.setScreen(ScreensFramework.telaConsulta);
+        mainContainer.setScreen(ScreensFramework.telaLogin);
         
         Group root = new Group();
         root.getChildren().addAll(mainContainer);

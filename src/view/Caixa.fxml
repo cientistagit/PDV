@@ -12,5 +12,6 @@
       <Button fx:id="btnFecharCaixa" layoutX="320.0" layoutY="54.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="198.0" text="FECHAR CAIXA" />
       <Button fx:id="btnSuprimento" layoutX="64.0" layoutY="206.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="198.0" text="SUPRIMENTO" />
       <Button fx:id="btnSangria" layoutX="320.0" layoutY="206.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="198.0" text="SANGRIA" />
+      <Button fx:id="btnVoltar" layoutX="524.0" layoutY="366.0" mnemonicParsing="false" onAction="#btnVoltar_Click" text="&lt;&lt; Voltar" />
    </children>
 </AnchorPane>

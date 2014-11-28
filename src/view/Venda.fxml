@@ -31,5 +31,6 @@
          </font>
       </Label>
       <Button fx:id="search" layoutX="398.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSearchProduto" text="Q" />
+      <Button fx:id="btnVoltar" layoutX="526.0" layoutY="370.0" mnemonicParsing="false" onAction="#btnVoltar_Click" text="&lt;&lt; Voltar" />
    </children>
 </AnchorPane>
