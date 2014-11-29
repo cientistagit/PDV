@@ -13,7 +13,7 @@ public class Venda  implements java.io.Serializable {
 
 
      private Integer idVenda;
-     private Caixa caixaaberturafechamento;
+     private Caixa caixa;
      private Usuario usuario;
      private Date dataVenda;
      private String vendedorId;
@@ -26,14 +26,14 @@ public class Venda  implements java.io.Serializable {
     }
 
 	
-    public Venda(Caixa caixaaberturafechamento, Usuario usuario, Date dataVenda, String vendedorId) {
-        this.caixaaberturafechamento = caixaaberturafechamento;
+    public Venda(Caixa caixa, Usuario usuario, Date dataVenda, String vendedorId) {
+        this.caixa = caixa;
         this.usuario = usuario;
         this.dataVenda = dataVenda;
         this.vendedorId = vendedorId;
     }
-    public Venda(Caixa caixaaberturafechamento, Usuario usuario, Date dataVenda, String vendedorId, Date dataCancelamento, String numeroCupomFiscal, Set pagamentovendas, Set vendaitems) {
-       this.caixaaberturafechamento = caixaaberturafechamento;
+    public Venda(Caixa caixa, Usuario usuario, Date dataVenda, String vendedorId, Date dataCancelamento, String numeroCupomFiscal, Set pagamentovendas, Set vendaitems) {
+       this.caixa = caixa;
        this.usuario = usuario;
        this.dataVenda = dataVenda;
        this.vendedorId = vendedorId;
@@ -50,12 +50,12 @@ public class Venda  implements java.io.Serializable {
     public void setIdVenda(Integer idVenda) {
         this.idVenda = idVenda;
     }
-    public Caixa getCaixaaberturafechamento() {
-        return this.caixaaberturafechamento;
+    public Caixa getCaixa() {
+        return this.caixa;
     }
     
-    public void setCaixaaberturafechamento(Caixa caixaaberturafechamento) {
-        this.caixaaberturafechamento = caixaaberturafechamento;
+    public void setCaixa(Caixa caixa) {
+        this.caixa = caixa;
     }
     public Usuario getUsuario() {
         return this.usuario;

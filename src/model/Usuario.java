@@ -17,7 +17,7 @@ public class Usuario  implements java.io.Serializable {
      private String login;
      private String senha;
      private Set caixasangrias = new HashSet(0);
-     private Set caixaaberturafechamentos = new HashSet(0);
+     private Set caixas = new HashSet(0);
      private Set vendas = new HashSet(0);
      private Set caixasuprimentos = new HashSet(0);
 
@@ -30,12 +30,12 @@ public class Usuario  implements java.io.Serializable {
         this.login = login;
         this.senha = senha;
     }
-    public Usuario(Colaborador colaborador, String login, String senha, Set caixasangrias, Set caixaaberturafechamentos, Set vendas, Set caixasuprimentos) {
+    public Usuario(Colaborador colaborador, String login, String senha, Set caixasangrias, Set caixas, Set vendas, Set caixasuprimentos) {
        this.colaborador = colaborador;
        this.login = login;
        this.senha = senha;
        this.caixasangrias = caixasangrias;
-       this.caixaaberturafechamentos = caixaaberturafechamentos;
+       this.caixas = caixas;
        this.vendas = vendas;
        this.caixasuprimentos = caixasuprimentos;
     }
@@ -75,12 +75,12 @@ public class Usuario  implements java.io.Serializable {
     public void setCaixasangrias(Set caixasangrias) {
         this.caixasangrias = caixasangrias;
     }
-    public Set getCaixaaberturafechamentos() {
-        return this.caixaaberturafechamentos;
+    public Set getCaixas() {
+        return this.caixas;
     }
     
-    public void setCaixaaberturafechamentos(Set caixaaberturafechamentos) {
-        this.caixaaberturafechamentos = caixaaberturafechamentos;
+    public void setCaixas(Set caixas) {
+        this.caixas = caixas;
     }
     public Set getVendas() {
         return this.vendas;

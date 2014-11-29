@@ -8,7 +8,7 @@
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
-    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.current_session_context_class">thread</property>    
     <mapping resource="model/Produtograde.hbm.xml"/>
     <mapping resource="model/Usuario.hbm.xml"/>
     <mapping resource="model/Pagamentovenda.hbm.xml"/>
@@ -18,7 +18,7 @@
     <mapping resource="model/Vendaitem.hbm.xml"/>
     <mapping resource="model/Produto.hbm.xml"/>
     <mapping resource="model/Tamanho.hbm.xml"/>
-    <mapping resource="model/Caixaaberturafechamento.hbm.xml"/>
+    <mapping resource="model/Caixa.hbm.xml"/>
     <mapping resource="model/Tipopagamento.hbm.xml"/>
     <mapping resource="model/Venda.hbm.xml"/>
     <mapping resource="model/Cargo.hbm.xml"/>

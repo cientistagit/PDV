@@ -9,7 +9,7 @@
             <generator class="identity" />
         </id>
         <many-to-one name="cargo" class="model.Cargo" fetch="select">
-            <column name="corgo_id" not-null="true" />
+            <column name="cargo_id" not-null="true" />
         </many-to-one>
         <property name="cpf" type="string">
             <column name="cpf" length="11" not-null="true" />

@@ -13,5 +13,15 @@
       <Button fx:id="btnSuprimento" layoutX="64.0" layoutY="206.0" mnemonicParsing="false" onAction="#btnSuprimento_Click" prefHeight="110.0" prefWidth="198.0" text="SUPRIMENTO" />
       <Button fx:id="btnSangria" layoutX="320.0" layoutY="206.0" mnemonicParsing="false" onAction="#btnSangria_Click" prefHeight="110.0" prefWidth="198.0" text="SANGRIA" />
       <Button fx:id="btnVoltar" layoutX="524.0" layoutY="366.0" mnemonicParsing="false" onAction="#btnVoltar_Click" text="&lt;&lt; Voltar" />
+      <Label fx:id="lblCaixa" layoutX="64.0" layoutY="20.0" text="Label" />
+      <Label fx:id="lblValorCaixa" layoutX="481.0" layoutY="21.0" text="0,00" />
+      <Label fx:id="lblValor" layoutX="437.0" layoutY="20.0" text="Valor: " />
+      <Label fx:id="label1" layoutX="179.0" layoutY="20.0" text="Usuario:" />
+      <Label fx:id="lblUsuario" layoutX="226.0" layoutY="20.0" text="Label" />
+      <Button fx:id="btnConferenciaCaixa" layoutX="530.0" layoutY="17.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0">
+         <tooltip>
+            <Tooltip text="Conferência de caixa" />
+         </tooltip>
+      </Button>
    </children>
 </AnchorPane>

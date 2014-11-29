@@ -13,7 +13,7 @@
         </property>
         <set name="colaboradors" table="colaborador" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="corgo_id" not-null="true" />
+                <column name="cargo_id" not-null="true" />
             </key>
             <one-to-many class="model.Colaborador" />
         </set>

@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 12/11/2014 11:53:32 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="pdv" name="model.Caixa" optimistic-lock="version" table="caixaaberturafechamento">
+  <class catalog="pdv" name="model.Caixa" optimistic-lock="version" table="caixa">
     <id name="idCaixa" type="java.lang.Integer">
       <column name="id_Caixa"/>
       <generator class="identity"/>

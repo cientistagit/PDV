@@ -7,6 +7,7 @@ package model.BLL;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import model.Caixa;
 import model.persistencia.DAOCaixa;
 
@@ -16,9 +17,8 @@ import model.persistencia.DAOCaixa;
  */
 public class BLLCaixa {
     
-    public static boolean AbrirCaixa() {
-        //confirmar data, usuario e valor do fundo de caixa.      
-        
+    public static Caixa AbrirCaixa() {
+        //confirmar data, usuario e valor do fundo de caixa.   
         Date date = new Date();
         
         Caixa caixa = new Caixa();
@@ -29,21 +29,35 @@ public class BLLCaixa {
         //gravar no banco        
        
         DAOCaixa daoCaixa = new DAOCaixa();
-        daoCaixa.GravarAbertura(caixa);
-    
-        return false;
+        try{
+            daoCaixa.GravarAbertura(caixa);
+            //mostrar mensagem de confirmação
+            JOptionPane.showMessageDialog(null, "Caixa aberto com sucesso!");
+            return caixa;
+        }
+        catch(Exception ex)
+        {
+            System.out.println(ex);
+            return null;
+        }
+        
     }
     
-    public static boolean temCaixaAberto(Date data){
+    public static Caixa temCaixaAberto(Date data){
         DAOCaixa daoCaixa = new DAOCaixa();
         Caixa caixa = null;
         
         caixa = daoCaixa.buscarPorData(data);
         
         if(caixa!=null)
-            return true;
+            return caixa;
         else
-            return false;
+            return null;
+    }
+    
+    public static double obterValorCaixa(Date data)
+    {
+        return 0;
     }
     
 }

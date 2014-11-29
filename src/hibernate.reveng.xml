@@ -3,7 +3,7 @@
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="pdv"/>
   <table-filter match-name="venda"/>
-  <table-filter match-name="caixaaberturafechamento"/>
+  <table-filter match-name="caixa"/>
   <table-filter match-name="vendaitem"/>
   <table-filter match-name="caixasuprimento"/>
   <table-filter match-name="tipopagamento"/>

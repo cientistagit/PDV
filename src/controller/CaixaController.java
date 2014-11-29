@@ -8,13 +8,17 @@ package controller;
 import controller.frameworkGerenciaTela.ControlledScreen;
 import controller.frameworkGerenciaTela.ScreensController;
 import java.net.URL;
+import java.text.Format;
+import java.text.NumberFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import model.BLL.BLLCaixa;
+import model.Caixa;
 import view.ScreensFramework;
 
 /**
@@ -30,18 +34,22 @@ public class CaixaController implements Initializable, ControlledScreen {
     
     @FXML
     private Button btnSuprimento;
-
     @FXML
     private Button btnFecharCaixa;
-
     @FXML
     private Button btnAbrirCaixa;
-
     @FXML
-    private Button btnSangria;
-    
+    private Button btnSangria;    
     @FXML
-    private Button btnVoltar;    
+    private Button btnVoltar;   
+    @FXML
+    private Label lblCaixa;   
+    @FXML
+    private Label lblValorCaixa;    
+    @FXML
+    private Label lblUsuario;
+    @FXML
+    private Button btnConferenciaCaixa;    
     
     ScreensController myController;
     
@@ -52,7 +60,13 @@ public class CaixaController implements Initializable, ControlledScreen {
     
 @FXML
     void btnAbrirCaixa_Click(ActionEvent event) {
-        BLLCaixa.AbrirCaixa();        
+        Caixa caixa = BLLCaixa.AbrirCaixa();
+        if(caixa != null)
+        {
+            btnAbrirCaixa.setDisable(true);
+            lblCaixa.setText("CAIXA ABERTO ");
+            lblUsuario.setText(caixa.getUsuario().getColaborador().getNome());
+        }
     }
 
     @FXML
@@ -73,10 +87,18 @@ public class CaixaController implements Initializable, ControlledScreen {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        Date date = new Date();
-        if(BLLCaixa.temCaixaAberto(date))
-        {
+        Date data = new Date();
+        Caixa caixa = BLLCaixa.temCaixaAberto(data);
+        if(caixa != null)
+        {            
             btnAbrirCaixa.setDisable(true);
+            lblCaixa.setText("CAIXA ABERTO ");
+            lblUsuario.setText(caixa.getUsuario().getColaborador().getNome());
+            lblValorCaixa.setText(NumberFormat.getCurrencyInstance().format(BLLCaixa.obterValorCaixa(data)));
+        }
+        else
+        {
+            lblCaixa.setText("CAIXA FECHADO");
         }
     }    
 

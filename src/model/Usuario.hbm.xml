@@ -22,7 +22,7 @@
       </key>
       <one-to-many class="model.Caixasangria"/>
     </set>
-    <set fetch="select" inverse="true" lazy="true" name="caixaaberturafechamentos" table="caixaaberturafechamento">
+    <set fetch="select" inverse="true" lazy="true" name="caixas" table="caixa">
       <key>
         <column name="usuario_id" not-null="true"/>
       </key>
