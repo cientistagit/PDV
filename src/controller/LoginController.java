@@ -38,8 +38,7 @@ public class LoginController implements Initializable, ControlledScreen {
     @FXML
     private PasswordField txtSenha;
     
-    ScreensController myController;
-    public Usuario usuarioLogin = null;
+    ScreensController myController;    
     
     @FXML
     private void handleButtonAction(ActionEvent event) {

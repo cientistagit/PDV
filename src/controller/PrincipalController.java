@@ -8,11 +8,13 @@ package controller;
 import controller.frameworkGerenciaTela.ControlledScreen;
 import controller.frameworkGerenciaTela.ScreensController;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import model.BLL.BLLCaixa;
 import view.ScreensFramework;
 
 
@@ -45,7 +47,8 @@ public class PrincipalController implements Initializable, ControlledScreen {
 
     @FXML
     void btnCaixa_Click(ActionEvent event) {
-        myController.setScreen(ScreensFramework.telaCaixa);
+        ScreensFramework.mainContainer.loadScreen(ScreensFramework.telaCaixa, ScreensFramework.telaCaixaFile);
+        myController.setScreen(ScreensFramework.telaCaixa);                        
     }
 
     @FXML

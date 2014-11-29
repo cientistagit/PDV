@@ -14,12 +14,14 @@ import model.persistencia.DAOUsuario;
  * Classe que contém toda a lógica de negócio relacionada a usuário
  */
 public class BLLUsuario {
+    public static Usuario usuarioLogin = null;
     
     public static boolean validarLogin(String pLogin, String pSenha){
 
         //busco usuário utilizando login e senha
         DAOUsuario dAOUsuario = new DAOUsuario();
         Usuario usuario  = dAOUsuario.buscar(pLogin, pSenha);
+        usuarioLogin = usuario;
 
         return usuario!=null;
     }    

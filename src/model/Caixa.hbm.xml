@@ -2,41 +2,38 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 12/11/2014 11:53:32 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="pdv" name="model.Usuario" optimistic-lock="version" table="usuario">
-    <id name="idUsuario" type="java.lang.Integer">
-      <column name="id_usuario"/>
+  <class catalog="pdv" name="model.Caixa" optimistic-lock="version" table="caixaaberturafechamento">
+    <id name="idCaixa" type="java.lang.Integer">
+      <column name="id_Caixa"/>
       <generator class="identity"/>
     </id>
-    <many-to-one class="model.Colaborador" fetch="select" name="colaborador">
-      <column name="colaborador_id" not-null="true"/>
+    <many-to-one class="model.Usuario" fetch="select" name="usuario">
+      <column name="usuario_id" not-null="true"/>
     </many-to-one>
-    <property name="login" type="string">
-      <column length="20" name="login" not-null="true"/>
+    <property name="dataAbertura" type="timestamp">
+      <column length="19" name="data_abertura" not-null="true"/>
     </property>
-    <property name="senha" type="string">
-      <column length="45" name="senha" not-null="true"/>
+    <property name="dataFechamento" type="timestamp">
+      <column length="19" name="data_fechamento" not-null="false"/>
+    </property>
+    <property name="valorInicial" type="big_decimal">
+      <column name="valor_inicial" not-null="true" precision="10"/>
     </property>
     <set fetch="select" inverse="true" lazy="true" name="caixasangrias" table="caixasangria">
       <key>
-        <column name="usuario_id" not-null="true"/>
+        <column name="caixa_id" not-null="true"/>
       </key>
       <one-to-many class="model.Caixasangria"/>
     </set>
-    <set fetch="select" inverse="true" lazy="true" name="caixaaberturafechamentos" table="caixaaberturafechamento">
-      <key>
-        <column name="usuario_id" not-null="true"/>
-      </key>
-      <one-to-many class="model.Caixa"/>
-    </set>
     <set fetch="select" inverse="true" lazy="true" name="vendas" table="venda">
       <key>
-        <column name="usuario_id" not-null="true"/>
+        <column name="caixa_id" not-null="true"/>
       </key>
       <one-to-many class="model.Venda"/>
     </set>
     <set fetch="select" inverse="true" lazy="true" name="caixasuprimentos" table="caixasuprimento">
       <key>
-        <column name="usuario_id" not-null="true"/>
+        <column name="caixa_id" not-null="true"/>
       </key>
       <one-to-many class="model.Caixasuprimento"/>
     </set>

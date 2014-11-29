@@ -7,17 +7,14 @@ package controller;
 
 import controller.frameworkGerenciaTela.ControlledScreen;
 import controller.frameworkGerenciaTela.ScreensController;
-import java.math.BigDecimal;
 import java.net.URL;
-import java.time.Instant;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import model.Caixaaberturafechamento;
-import model.persistencia.DAOCaixa;
+import model.BLL.BLLCaixa;
 import view.ScreensFramework;
 
 /**
@@ -55,12 +52,7 @@ public class CaixaController implements Initializable, ControlledScreen {
     
 @FXML
     void btnAbrirCaixa_Click(ActionEvent event) {
-        Date date = new Date();
-        Caixaaberturafechamento caixa = new Caixaaberturafechamento();
-        //caixa.setUsuario();
-        caixa.setDataAbertura(date);
-        caixa.setValorInicial(BigDecimal.ZERO);
-        
+        BLLCaixa.AbrirCaixa();        
     }
 
     @FXML
@@ -81,6 +73,11 @@ public class CaixaController implements Initializable, ControlledScreen {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        Date date = new Date();
+        if(BLLCaixa.temCaixaAberto(date))
+        {
+            btnAbrirCaixa.setDisable(true);
+        }
     }    
 
     @Override

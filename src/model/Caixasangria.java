@@ -12,7 +12,7 @@ public class Caixasangria  implements java.io.Serializable {
 
 
      private Integer idCaixaSangria;
-     private Caixaaberturafechamento caixaaberturafechamento;
+     private Caixa caixaaberturafechamento;
      private Usuario usuario;
      private BigDecimal valorRetirado;
      private Date data;
@@ -20,7 +20,7 @@ public class Caixasangria  implements java.io.Serializable {
     public Caixasangria() {
     }
 
-    public Caixasangria(Caixaaberturafechamento caixaaberturafechamento, Usuario usuario, BigDecimal valorRetirado, Date data) {
+    public Caixasangria(Caixa caixaaberturafechamento, Usuario usuario, BigDecimal valorRetirado, Date data) {
        this.caixaaberturafechamento = caixaaberturafechamento;
        this.usuario = usuario;
        this.valorRetirado = valorRetirado;
@@ -34,11 +34,11 @@ public class Caixasangria  implements java.io.Serializable {
     public void setIdCaixaSangria(Integer idCaixaSangria) {
         this.idCaixaSangria = idCaixaSangria;
     }
-    public Caixaaberturafechamento getCaixaaberturafechamento() {
+    public Caixa getCaixaaberturafechamento() {
         return this.caixaaberturafechamento;
     }
     
-    public void setCaixaaberturafechamento(Caixaaberturafechamento caixaaberturafechamento) {
+    public void setCaixaaberturafechamento(Caixa caixaaberturafechamento) {
         this.caixaaberturafechamento = caixaaberturafechamento;
     }
     public Usuario getUsuario() {

@@ -23,7 +23,7 @@ public class ScreensFramework extends Application {
     public static String telaPrincipal = "principal";
     private static final String telaPrincipalFile = "/view/Principal.fxml";
     public static String telaCaixa = "caixa";
-    private static final String telaCaixaFile = "/view/Caixa.fxml";
+    public static final String telaCaixaFile = "/view/Caixa.fxml";
     public static String telaConsulta = "consulta";
     private static final String telaConsultaFile = "/view/Consulta.fxml";
     public static String telaVenda = "venda";
@@ -31,15 +31,19 @@ public class ScreensFramework extends Application {
     public static String telaPagamento = "pagamento";
     private static final String telaPagamentoFile = "/view/Pagamento.fxml";
     
+    /**
+     * colocado como global para que telas possam ser carregadas dinamicamente a partir de outros pontos do programa
+     */
+    public static ScreensController mainContainer = new ScreensController();
     
     @Override
     public void start(Stage primaryStage) {
         
-        ScreensController mainContainer = new ScreensController();
+        
                
         mainContainer.loadScreen(ScreensFramework.telaLogin, ScreensFramework.telaLoginFile);
         mainContainer.loadScreen(ScreensFramework.telaPrincipal, ScreensFramework.telaPrincipalFile);
-        mainContainer.loadScreen(ScreensFramework.telaCaixa, ScreensFramework.telaCaixaFile);
+        //mainContainer.loadScreen(ScreensFramework.telaCaixa, ScreensFramework.telaCaixaFile);
         mainContainer.loadScreen(ScreensFramework.telaConsulta, ScreensFramework.telaConsultaFile);
         mainContainer.loadScreen(ScreensFramework.telaPagamento, ScreensFramework.telaPagamentoFile);
         mainContainer.loadScreen(ScreensFramework.telaVenda, ScreensFramework.telaVendaFile);

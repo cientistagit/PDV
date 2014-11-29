@@ -12,7 +12,7 @@ public class Caixasuprimento  implements java.io.Serializable {
 
 
      private Integer idCaixaSuprimento;
-     private Caixaaberturafechamento caixaaberturafechamento;
+     private Caixa caixaaberturafechamento;
      private Usuario usuario;
      private BigDecimal valorAdicionado;
      private Date data;
@@ -20,7 +20,7 @@ public class Caixasuprimento  implements java.io.Serializable {
     public Caixasuprimento() {
     }
 
-    public Caixasuprimento(Caixaaberturafechamento caixaaberturafechamento, Usuario usuario, BigDecimal valorAdicionado, Date data) {
+    public Caixasuprimento(Caixa caixaaberturafechamento, Usuario usuario, BigDecimal valorAdicionado, Date data) {
        this.caixaaberturafechamento = caixaaberturafechamento;
        this.usuario = usuario;
        this.valorAdicionado = valorAdicionado;
@@ -34,11 +34,11 @@ public class Caixasuprimento  implements java.io.Serializable {
     public void setIdCaixaSuprimento(Integer idCaixaSuprimento) {
         this.idCaixaSuprimento = idCaixaSuprimento;
     }
-    public Caixaaberturafechamento getCaixaaberturafechamento() {
+    public Caixa getCaixaaberturafechamento() {
         return this.caixaaberturafechamento;
     }
     
-    public void setCaixaaberturafechamento(Caixaaberturafechamento caixaaberturafechamento) {
+    public void setCaixaaberturafechamento(Caixa caixaaberturafechamento) {
         this.caixaaberturafechamento = caixaaberturafechamento;
     }
     public Usuario getUsuario() {
