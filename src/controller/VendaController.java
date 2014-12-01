@@ -58,9 +58,17 @@ public class VendaController implements Initializable, ControlledScreen {
     private Button search;
     @FXML
     private Button btnVoltar;
+    @FXML
+    private Button btnPagar;    
 
     //
     //
+    
+    
+    @FXML
+    void btnPagar_Click(ActionEvent event) {
+        myController.setScreen(ScreensFramework.telaPagamento);
+    }
 
     private Venda venda = new Venda();
     private Produto p;
