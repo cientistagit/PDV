@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -8,22 +9,26 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConsultaController">
    <children>
-      <Label layoutX="63.0" layoutY="39.0" text="Consultar por Código" />
-      <TextField id="txtBuscaCod" fx:id="txtBuscaCod" layoutX="63.0" layoutY="63.0" promptText="Código do Produto..." />
-      <Button id="botBuscaCod" fx:id="botBuscaCod" layoutX="220.0" layoutY="63.0" mnemonicParsing="false" onAction="#buscarCodProduto" text="OK" />
-      <Label layoutX="314.0" layoutY="39.0" text="Consultar por Descrição" />
-      <TextField id="txtBuscaDesc" fx:id="txtBuscaDesc" layoutX="314.0" layoutY="63.0" prefHeight="25.0" prefWidth="179.0" promptText="Descrição do Produto..." />
-      <Button id="botBuscaDesc" fx:id="botBuscaDesc" layoutX="500.0" layoutY="63.0" mnemonicParsing="false" onAction="#buscarDescProduto" text="OK" />
+      <Label layoutX="54.0" layoutY="52.0" text="Consultar por Código" />
+      <TextField id="txtBuscaCod" fx:id="txtBuscaCod" layoutX="54.0" layoutY="76.0" promptText="Código do Produto..." />
+      <Button id="botBuscaCod" fx:id="botBuscaCod" layoutX="211.0" layoutY="76.0" mnemonicParsing="false" onAction="#buscarCodProduto" text="OK" />
+      <Label layoutX="314.0" layoutY="52.0" text="Consultar por Descrição" />
+      <TextField id="txtBuscaDesc" fx:id="txtBuscaDesc" layoutX="314.0" layoutY="76.0" prefHeight="25.0" prefWidth="179.0" promptText="Descrição do Produto..." />
+      <Button id="botBuscaDesc" fx:id="botBuscaDesc" layoutX="500.0" layoutY="76.0" mnemonicParsing="false" onAction="#buscarDescProduto" text="OK" />
       <TableView fx:id="tableConsulta" layoutX="29.0" layoutY="146.0" prefHeight="235.0" prefWidth="547.0">
         <columns>
           <TableColumn fx:id="columID" prefWidth="48.0" text="Cód." />
-          <TableColumn fx:id="columDesc" prefWidth="218.0" text="Descrição" />
-            <TableColumn fx:id="columTam" prefWidth="71.0" text="Tamanho" />
-            <TableColumn fx:id="columCor" prefWidth="75.0" text="Cor" />
-            <TableColumn fx:id="columQtde" prefWidth="50.0" text="Qtde" />
-            <TableColumn fx:id="columPreco" prefWidth="84.0" text="Preço" />
+          <TableColumn fx:id="columDesc" prefWidth="243.0" text="Descrição" />
+            <TableColumn fx:id="columTam" prefWidth="63.0" text="Tamanho" />
+            <TableColumn fx:id="columCor" prefWidth="101.0" text="Cor" />
+            <TableColumn fx:id="columPreco" prefWidth="91.0" text="Preço" />
         </columns>
       </TableView>
       <Separator layoutX="30.0" layoutY="120.0" prefHeight="5.0" prefWidth="547.0" />
+      <Button id="botVoltar" fx:id="botVoltar" layoutX="500.0" layoutY="20.0" mnemonicParsing="false" onAction="#voltarTela" text="VOLTAR" textFill="#ee0c0c">
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

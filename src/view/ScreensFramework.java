@@ -48,7 +48,7 @@ public class ScreensFramework extends Application {
         mainContainer.loadScreen(ScreensFramework.telaPagamento, ScreensFramework.telaPagamentoFile);
         mainContainer.loadScreen(ScreensFramework.telaVenda, ScreensFramework.telaVendaFile);
         
-        mainContainer.setScreen(ScreensFramework.telaLogin);
+        mainContainer.setScreen(ScreensFramework.telaConsulta);
         
         Group root = new Group();
         root.getChildren().addAll(mainContainer);
