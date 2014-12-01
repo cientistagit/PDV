@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PagamentoCartaoController">
+   <children>
+      <TitledPane animated="false" collapsible="false" expanded="false" prefHeight="6.0" prefWidth="600.0" text="Sistema PDV - Pagamento por cartão" />
+      <Button fx:id="btnVisa" layoutX="50.0" layoutY="43.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="87.0" text="Visa" />
+      <Button fx:id="btnMaster" layoutX="175.0" layoutY="43.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="87.0" text="Mastercard" />
+      <ComboBox fx:id="combo" layoutX="100.0" layoutY="180.0" prefWidth="150.0" promptText="Escolha" visibleRowCount="7">
+           <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="12x" />
+                <String fx:value="10x" />
+                <String fx:value="8x" />
+                <String fx:value="6x" />
+                <String fx:value="4x" />
+                <String fx:value="2x" />
+                <String fx:value="à vista" />
+            </FXCollections>
+            </items> 
+      </ComboBox>
+   </children>
+</AnchorPane>
