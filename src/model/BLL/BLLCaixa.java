@@ -17,7 +17,7 @@ import model.persistencia.DAOCaixa;
  */
 public class BLLCaixa {
     
-    public static Caixa AbrirCaixa() {
+    public static boolean abrirCaixa() {
         //confirmar data, usuario e valor do fundo de caixa.   
         Date date = new Date();
         
@@ -33,14 +33,34 @@ public class BLLCaixa {
             daoCaixa.GravarAbertura(caixa);
             //mostrar mensagem de confirmação
             JOptionPane.showMessageDialog(null, "Caixa aberto com sucesso!");
-            return caixa;
+            return true;
         }
         catch(Exception ex)
         {
             System.out.println(ex);
-            return null;
+            return false;
         }
         
+    }
+    
+    public static boolean fecharCaixa()
+    {
+        Date data = new Date();
+        DAOCaixa daoCaixa = new DAOCaixa();
+        Caixa caixa = null;
+        caixa = daoCaixa.buscarPorData(data);
+         try{
+            daoCaixa.fecharCaixa(caixa);
+            //mostrar mensagem de confirmação
+            JOptionPane.showMessageDialog(null, "Caixa fechado com sucesso!");
+            return true;
+        }
+        catch(Exception ex)
+        {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Caixa nao foi fechado!");
+            return false;
+        }
     }
     
     public static Caixa temCaixaAberto(Date data){

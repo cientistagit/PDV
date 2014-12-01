@@ -43,6 +43,25 @@ public class DAOCaixa {
         }       
     }
     
+    public void fecharCaixa(Caixa caixa) {        
+               
+        Session session = NewHibernateUtil.getSessionFactory().getCurrentSession();
+        Date dataFechamento = new Date();
+        try {
+            caixa.setDataFechamento(dataFechamento);
+            session.beginTransaction(); // Abre-se uma transação
+            session.saveOrUpdate(caixa);      
+            session.getTransaction().commit();   // Realiza definitivamente todas as operações pendentes na transação                                    
+ 
+        } catch (Exception ex) {            
+            //System.out.println(ex);
+            throw ex;
+            //JOptionPane.showMessageDialog(null, ex);
+            //mensagem de erro
+ 
+        }       
+    }        
+    
     public Caixa buscarPorData(Date pData){
         Session session = NewHibernateUtil.getSessionFactory().getCurrentSession();
         
@@ -62,7 +81,7 @@ public class DAOCaixa {
         try { 
             session.beginTransaction(); // Abre-se uma transação                 
             //String hql = "from Caixa c where c.dataAbertura between :from and :to and c.dataFechamento is null";            
-            String hql = "from Caixa c where c.dataAbertura between :from and :to";
+            String hql = "from Caixa c where c.dataAbertura between :from and :to and c.dataFechamento is null";
             Query query = session.createQuery(hql);   
             query.setParameter("from", fromDate);
             query.setParameter("to", toDate);

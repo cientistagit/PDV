@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import model.BLL.BLLCaixa;
+import model.BLL.BLLUsuario;
 import model.Caixa;
 import view.ScreensFramework;
 
@@ -49,7 +50,11 @@ public class CaixaController implements Initializable, ControlledScreen {
     @FXML
     private Label lblUsuario;
     @FXML
-    private Button btnConferenciaCaixa;    
+    private Button btnConferenciaCaixa;        
+    @FXML
+    private Label label1;
+    @FXML
+    private Label lblValor;
     
     ScreensController myController;
     
@@ -59,18 +64,25 @@ public class CaixaController implements Initializable, ControlledScreen {
     }
     
 @FXML
-    void btnAbrirCaixa_Click(ActionEvent event) {
-        Caixa caixa = BLLCaixa.AbrirCaixa();
-        if(caixa != null)
+    void btnAbrirCaixa_Click(ActionEvent event) {        
+        if(BLLCaixa.abrirCaixa())
         {
             btnAbrirCaixa.setDisable(true);
             lblCaixa.setText("CAIXA ABERTO ");
-            lblUsuario.setText(caixa.getUsuario().getColaborador().getNome());
+            this.setExibicaoCaixaAberto(true);
+            lblUsuario.setText(BLLUsuario.usuarioLogin.getColaborador().getNome());
         }
     }
 
     @FXML
     void btnFecharCaixa_Click(ActionEvent event) {
+        
+        if(BLLCaixa.fecharCaixa())
+        {
+            btnAbrirCaixa.setDisable(false);
+            lblCaixa.setText("CAIXA FECHADO ");
+            this.setExibicaoCaixaAberto(false);            
+        }
 
     }
 
@@ -93,14 +105,26 @@ public class CaixaController implements Initializable, ControlledScreen {
         {            
             btnAbrirCaixa.setDisable(true);
             lblCaixa.setText("CAIXA ABERTO ");
+            this.setExibicaoCaixaAberto(true);
             lblUsuario.setText(caixa.getUsuario().getColaborador().getNome());
             lblValorCaixa.setText(NumberFormat.getCurrencyInstance().format(BLLCaixa.obterValorCaixa(data)));
         }
         else
         {
             lblCaixa.setText("CAIXA FECHADO");
+            this.setExibicaoCaixaAberto(false);
         }
     }    
+    
+    private void setExibicaoCaixaAberto(boolean pExibir)
+    {
+        lblValor.setVisible(pExibir);
+        lblValorCaixa.setVisible(pExibir);
+        lblUsuario.setVisible(pExibir);
+        label1.setVisible(pExibir);
+        btnConferenciaCaixa.setVisible(pExibir);
+        
+    }
 
     @Override
     public void setScreenParent(ScreensController screenPage) {
