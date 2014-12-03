@@ -8,19 +8,24 @@ package controller;
 import controller.frameworkGerenciaTela.ControlledScreen;
 import controller.frameworkGerenciaTela.ScreensController;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import model.Produto;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javax.swing.JOptionPane;
 import model.Colaborador;
+import model.TabelaConsulta;
 import model.TabelaVenda;
 import model.Usuario;
 import model.Venda;
@@ -34,6 +39,10 @@ import view.ScreensFramework;
  */
 public class VendaController implements Initializable, ControlledScreen {
 
+    // ##########   Atributos da Tela de Venda  ##########
+    
+    @FXML
+    private AnchorPane paneVenda;
     @FXML
     private TableView<TabelaVenda> tableVenda;
     @FXML
@@ -59,27 +68,64 @@ public class VendaController implements Initializable, ControlledScreen {
     @FXML
     private Button btnVoltar;
     @FXML
-    private Button btnPagar;    
+    private Button btnPagar;
+    @FXML
+    private Button botConsultar;
+    @FXML
+    private Button botSelecionar;
 
-    //
-    //
     
+    
+    // ##########   Atributos da Tela de Consulta  ##########
     
     @FXML
-    void btnPagar_Click(ActionEvent event) {
-        myController.setScreen(ScreensFramework.telaPagamento);
-    }
-
+    private AnchorPane paneConsulta;
+    @FXML
+    private TableView<TabelaConsulta> tableConsulta;
+    @FXML
+    private TableColumn<TabelaConsulta, Integer> columID;
+    @FXML
+    private TableColumn<TabelaConsulta, String> columDesc;
+    @FXML
+    private TableColumn<TabelaConsulta, String> columTam;
+    @FXML
+    private TableColumn<TabelaConsulta, String> columCor;
+    @FXML
+    private TableColumn<TabelaConsulta, BigDecimal> columPreco;
+    @FXML
+    private TextField txtBuscaCod;
+    @FXML
+    private Button botBuscaCod;
+    @FXML
+    private TextField txtBuscaDesc;
+    @FXML
+    private Button botBuscaDesc;
+    @FXML
+    private Button botVoltar;
+    
+        
     private Venda venda = new Venda();
     private Produto p;
+    private TabelaConsulta tbConsulta = new TabelaConsulta();
+    private ArrayList<TabelaConsulta> listaProdutos = new ArrayList<TabelaConsulta>();
+    
     private ScreensController myController;
-
+    
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO                
+        
+        // Inicialização das colunas da tabela de consulta
+        this.columID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        this.columDesc.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+        this.columTam.setCellValueFactory(new PropertyValueFactory<>("tamanho"));
+        this.columCor.setCellValueFactory(new PropertyValueFactory<>("cor"));
+        this.columPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
+        
+        // Inicialização das colunas da tabela de venda
         tableVenda.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("id"));
         tableVenda.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("produto"));
         tableVenda.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("quantidade"));
@@ -92,6 +138,12 @@ public class VendaController implements Initializable, ControlledScreen {
 
     }
     
+    @FXML
+    void btnPagar_Click(ActionEvent event) {
+        myController.setScreen(ScreensFramework.telaPagamento);
+    }
+
+       
     @FXML
     void btnVoltar_Click(ActionEvent event) {
         myController.setScreen(ScreensFramework.telaPrincipal);
@@ -112,13 +164,13 @@ public class VendaController implements Initializable, ControlledScreen {
         if (p != null) {
             //                        
             //
-            p.setValorVenda(p.getValorVenda().multiply(BigDecimal.valueOf(Integer.parseInt(quantidade.getText().trim()))));
+            p.setValorVenda(p.getValorVenda().setScale(2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(Integer.parseInt(quantidade.getText().trim()))));
             //            
-            float d = (p.getValorVenda().floatValue() * Float.parseFloat(desconto.getText())) / 100;            
+            float d = (p.getValorVenda().floatValue() * Float.parseFloat(desconto.getText())) / 100;  
             p.setValorVenda(p.getValorVenda().subtract(BigDecimal.valueOf(d)));
             //
-            float valor = Float.parseFloat(total.getText().trim());
-            valor += p.getValorVenda().floatValue();
+            float valor = Float.parseFloat(total.getText());
+            valor += p.getValorVenda().setScale(2, RoundingMode.HALF_UP).floatValue();
             total.setText(String.valueOf(convertValue(valor)));
             //
             saveItem(p, Integer.parseInt(quantidade.getText().trim()), d);
@@ -149,7 +201,7 @@ public class VendaController implements Initializable, ControlledScreen {
             p = p.search(p);
             if (p != null) {
                 descricao.setText(p.getDescricao());
-                valor.setText(String.valueOf(p.getValorVenda()));
+                valor.setText(String.valueOf(p.getValorVenda().setScale(2, RoundingMode.HALF_UP)));
                 quantidade.setText("1");
                 desconto.setText("0");
             } else {
@@ -157,7 +209,16 @@ public class VendaController implements Initializable, ControlledScreen {
             }
         }
     }
+    
+    @FXML
+    void consultarProduto(ActionEvent event) {
 
+        // Deixa de exibir a tela de venda e passa a exibir a tela de consulta
+        this.paneVenda.setVisible(false);
+        this.paneConsulta.setVisible(true);
+    }
+
+    
     public void clear() {
         idProduto.clear();
         descricao.clear();
@@ -192,6 +253,102 @@ public class VendaController implements Initializable, ControlledScreen {
         Vendaitem vItem = new Vendaitem(p, this.venda, qtd, tot, valDesc);
         venda.getVendaitems().add(vItem);
         tableVenda.getItems().add(var);
+    }
+    
+    
+    
+    
+    
+    // ##########   Implementação dos métodos da Tela de Venda  ##########
+    
+    @FXML
+    void buscarCodProduto(ActionEvent event) {
+        
+        Integer codigo; 
+        TabelaConsulta tbConsulta = new TabelaConsulta();
+        ArrayList<TabelaConsulta> listaProdutos = new ArrayList<TabelaConsulta>(); 
+        
+        // "Pegando" o código digitado pelo usuário
+        codigo = Integer.parseInt(this.txtBuscaCod.getText());
+        
+        //Preenchendo a lista com os registros vindos do BD
+        listaProdutos = (ArrayList<TabelaConsulta>) tbConsulta.buscaPorCodigo(codigo);
+        
+        // Verificando se a lista está vazia
+        if(listaProdutos.isEmpty())
+            JOptionPane.showMessageDialog(null, "Não foram encontrados produtos com este código!");
+        else
+            // Preenchendo a tabela que é exibida
+            this.tableConsulta.setItems(FXCollections.observableArrayList(listaProdutos));
+        
+        // Limpando as opções de busca
+        this.txtBuscaCod.clear();
+        this.txtBuscaDesc.clear();
+    }
+
+    
+    
+    @FXML
+    void buscarDescProduto(ActionEvent event) {
+        
+        String desc; 
+        
+        // "Pegando" a descrição digitada pelo usuário
+        desc = this.txtBuscaDesc.getText();
+        
+        // Verificando se a descrição é válida
+        if(desc.length() < 4)
+            JOptionPane.showMessageDialog(null, "Descrição inválida. Digite pelo menos 4 caracteres.");
+        
+        else{
+                    
+            //Preenchendo a lista com os registros vindos do BD
+            listaProdutos = (ArrayList<TabelaConsulta>) tbConsulta.buscaPorDescricao(desc);
+
+            // Verificando se a lista está vazia
+            if(listaProdutos.isEmpty())
+                JOptionPane.showMessageDialog(null, "Não foram encontrados produtos com esta descrição!");
+            else
+                // Preenchendo a tabela que é exibida
+                this.tableConsulta.setItems(FXCollections.observableArrayList(listaProdutos));
+             
+        }
+        
+        // Limpando as opções de busca
+        this.txtBuscaCod.clear();
+        this.txtBuscaDesc.clear();
+
+    }
+          
+    
+    @FXML
+    void selecionarProduto(ActionEvent event) {
+        
+        this.tbConsulta = tableConsulta.getSelectionModel().getSelectedItem();
+        this.quantidade.setText("1");
+        this.descricao.setText(this.tbConsulta.getDescricao());
+        this.idProduto.setText(Integer.toString(this.tbConsulta.getId()));
+        this.valor.setText(this.tbConsulta.getPreco().setScale(2, RoundingMode.HALF_UP).toString());
+        this.checkDesconto.setSelected(false);
+        this.desconto.setText("0.0");
+        
+        p = new Produto();
+        p.setIdProduto(this.tbConsulta.getId());
+        p.setDescricao(this.tbConsulta.getDescricao());
+        p.setValorVenda(this.tbConsulta.getPreco().setScale(2, RoundingMode.HALF_UP));
+        
+        this.paneVenda.setVisible(true);
+        this.paneConsulta.setVisible(false);
+        
+    }
+    
+    
+    @FXML
+    void voltarTela(ActionEvent event) {
+        
+        // Deixa de exibir a tela de venda e passa a exibir a tela de consulta
+        this.paneVenda.setVisible(true);
+        this.paneConsulta.setVisible(false);
     }
 
 }

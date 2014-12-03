@@ -75,6 +75,7 @@ public class ConsultaController implements Initializable, ControlledScreen {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        // Inicialização das colunas
         this.columID.setCellValueFactory(new PropertyValueFactory<>("id"));
         this.columDesc.setCellValueFactory(new PropertyValueFactory<>("descricao"));
         this.columTam.setCellValueFactory(new PropertyValueFactory<>("tamanho"));
@@ -120,21 +121,29 @@ public class ConsultaController implements Initializable, ControlledScreen {
     void buscarDescProduto(ActionEvent event) {
         
         String desc; 
-        TabelaConsulta tbConsulta = new TabelaConsulta();
-        ArrayList<TabelaConsulta> listaProdutos = new ArrayList<TabelaConsulta>(); 
         
         // "Pegando" a descrição digitada pelo usuário
         desc = this.txtBuscaDesc.getText();
         
-        //Preenchendo a lista com os registros vindos do BD
-        listaProdutos = (ArrayList<TabelaConsulta>) tbConsulta.buscaPorDescricao(desc);
+        // Verificando se a descrição é válida
+        if(desc.length() < 4)
+            JOptionPane.showMessageDialog(null, "Descrição inválida. Digite pelo menos 4 caracteres.");
         
-        // Verificando se a lista está vazia
-        if(listaProdutos.isEmpty())
-            JOptionPane.showMessageDialog(null, "Não foram encontrados produtos com este código!");
-        else
-            // Preenchendo a tabela que é exibida
-            this.tableConsulta.setItems(FXCollections.observableArrayList(listaProdutos));
+        else{
+            
+            TabelaConsulta tbConsulta = new TabelaConsulta();
+            ArrayList<TabelaConsulta> listaProdutos = new ArrayList<TabelaConsulta>();
+        
+            //Preenchendo a lista com os registros vindos do BD
+            listaProdutos = (ArrayList<TabelaConsulta>) tbConsulta.buscaPorDescricao(desc);
+
+            // Verificando se a lista está vazia
+            if(listaProdutos.isEmpty())
+                JOptionPane.showMessageDialog(null, "Não foram encontrados produtos com esta descrição!");
+            else
+                // Preenchendo a tabela que é exibida
+                this.tableConsulta.setItems(FXCollections.observableArrayList(listaProdutos));
+        }
         
         // Limpando as opções de busca
         this.txtBuscaCod.clear();
