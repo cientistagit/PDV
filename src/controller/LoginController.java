@@ -17,7 +17,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.BLL.BLLUsuario;
-import model.Usuario;
 import view.ScreensFramework;
 
 /**

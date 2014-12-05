@@ -5,6 +5,8 @@
  */
 package model;
 
+import org.hibernate.annotations.Type;
+
 
 /**
  *
@@ -15,6 +17,8 @@ public class Feature implements java.io.Serializable {
 
     private Integer idFeature;
     private String descricao;
+        
+    @Type(type = "numeric_boolean")
     private boolean status;
 
     public Feature() {

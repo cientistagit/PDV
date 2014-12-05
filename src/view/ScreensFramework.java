@@ -52,7 +52,7 @@ public class ScreensFramework extends Application {
         mainContainer.loadScreen(ScreensFramework.telaVenda, ScreensFramework.telaVendaFile);
         mainContainer.loadScreen(ScreensFramework.telaPagamento, ScreensFramework.telaPagamentoFile);
         mainContainer.loadScreen(ScreensFramework.telaPagamentoCartao, ScreensFramework.telaPagamentoCartaoFile);
-        //mainContainer.loadScreen(ScreensFramework.telaFeaturesConfig, ScreensFramework.telaFeaturesConfigFile);
+        mainContainer.loadScreen(ScreensFramework.telaFeaturesConfig, ScreensFramework.telaFeaturesConfigFile);
         
         mainContainer.setScreen(ScreensFramework.telaLogin);
         

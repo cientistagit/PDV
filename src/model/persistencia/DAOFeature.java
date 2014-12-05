@@ -9,6 +9,7 @@ package model.persistencia;
 import java.util.Iterator;
 import java.util.List;
 import model.Feature;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -27,7 +28,14 @@ public class DAOFeature {
  
             session.beginTransaction(); // Abre-se uma transação
             // Cria-se uma lista de usuarios a partir do BD
-            List listaFeatures = session.createQuery("from feature").list();
+            List listaFeatures = session.createQuery("select f.id, f.descricao, f.status from Feature f").list();
+            //List listaFeatures = null;           
+            
+            /*
+            String hql = "from feature";
+            Query query = session.createQuery(hql);
+            listaFeatures = query.list();
+             */
             return listaFeatures;           
  
             //JOptionPane.showMessageDialog(null, "Usuarios listados com sucesso");

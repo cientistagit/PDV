@@ -25,4 +25,5 @@ CREATE  TABLE `pdv`.`features` (
   PRIMARY KEY (`id_feature`) );
 ALTER TABLE `pdv`.`features` CHANGE COLUMN `status` `status` BIT NOT NULL  ;
 ALTER TABLE `pdv`.`features` RENAME TO  `pdv`.`feature` ;
+ALTER TABLE `pdv`.`feature` CHANGE COLUMN `status` `status` TINYINT(1) NOT NULL  ;
 
