@@ -15,3 +15,14 @@ ALTER TABLE `pdv`.`colaborador` CHANGE COLUMN `corgo_id` `cargo_id` INT(11) NOT 
   ON UPDATE NO ACTION;
 
 ALTER TABLE `pdv`.`caixaaberturafechamento` RENAME TO  `pdv`.`caixa` ;
+
+--03/12/14 Marcus Alexandre
+-- criação da tabela features
+CREATE  TABLE `pdv`.`features` (
+  `id_feature` INT NOT NULL AUTO_INCREMENT ,
+  `descricao` VARCHAR(90) NOT NULL ,
+  `status` BINARY NOT NULL ,
+  PRIMARY KEY (`id_feature`) );
+ALTER TABLE `pdv`.`features` CHANGE COLUMN `status` `status` BIT NOT NULL  ;
+ALTER TABLE `pdv`.`features` RENAME TO  `pdv`.`feature` ;
+

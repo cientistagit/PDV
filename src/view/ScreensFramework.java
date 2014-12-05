@@ -32,6 +32,8 @@ public class ScreensFramework extends Application {
     private static final String telaPagamentoFile = "/view/Pagamento.fxml";
     public static String telaPagamentoCartao = "pagamentoCartao";
     private static final String telaPagamentoCartaoFile = "/view/PagamentoCartao.fxml";
+    public static String telaFeaturesConfig = "featuresConfig";
+    private static final String telaFeaturesConfigFile = "/view/FeatureConfig.fxml";
     
     /**
      * colocado como global para que telas possam ser carregadas dinamicamente a partir de outros pontos do programa
@@ -50,6 +52,7 @@ public class ScreensFramework extends Application {
         mainContainer.loadScreen(ScreensFramework.telaVenda, ScreensFramework.telaVendaFile);
         mainContainer.loadScreen(ScreensFramework.telaPagamento, ScreensFramework.telaPagamentoFile);
         mainContainer.loadScreen(ScreensFramework.telaPagamentoCartao, ScreensFramework.telaPagamentoCartaoFile);
+        //mainContainer.loadScreen(ScreensFramework.telaFeaturesConfig, ScreensFramework.telaFeaturesConfigFile);
         
         mainContainer.setScreen(ScreensFramework.telaLogin);
         

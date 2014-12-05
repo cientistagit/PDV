@@ -16,6 +16,6 @@
       </TitledPane>
       <Button fx:id="btnDinheiro" layoutX="37.0" layoutY="166.0" mnemonicParsing="false" onMouseClicked="#btnDinheiroClicked" prefHeight="68.0" prefWidth="128.0" text="Dinheiro" />
       <Button fx:id="btnCheque" layoutX="236.0" layoutY="166.0" mnemonicParsing="false" onMouseClicked="#btnChequeClicked" prefHeight="68.0" prefWidth="128.0" text="Cheque" />
-      <Button fx:id="btnCartao" layoutX="430.0" layoutY="166.0" mnemonicParsing="false" onMouseClicked="#btnCartaoClicked" prefHeight="68.0" prefWidth="128.0" text="Cartão" />
+      <Button fx:id="btnCartao" layoutX="430.0" layoutY="166.0" mnemonicParsing="false" onAction="#btnCartaoClicked" onMouseClicked="#btnCartaoClicked" prefHeight="68.0" prefWidth="128.0" text="Cartão" />
    </children>
 </AnchorPane>
