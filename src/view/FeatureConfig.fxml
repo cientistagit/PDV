@@ -8,9 +8,6 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.FeatureConfigController">
-    <stylesheets>
-        <URL value="@/view/css/featureconfig.css" />
-    </stylesheets>
    <children>
       <TableView fx:id="tableFeature" layoutX="81.0" layoutY="43.0" prefHeight="243.0" prefWidth="401.0">
         <columns>

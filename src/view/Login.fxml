@@ -14,5 +14,6 @@
       <TextField id="txtLogin" fx:id="txtLogin" layoutX="257.0" layoutY="139.0" promptText="Login" />
       <PasswordField id="txtSenha" fx:id="txtSenha" layoutX="257.0" layoutY="183.0" promptText="Senha" />
       <ImageView id="imgLogin" fitHeight="80.0" fitWidth="93.0" layoutX="200.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="btnConfiguracoes" layoutX="496.0" layoutY="356.0" mnemonicParsing="false" onAction="#btnConfiguracoes_click" text="Configurações" />
     </children>
 </AnchorPane>

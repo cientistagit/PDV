@@ -32,6 +32,8 @@ public class ScreensFramework extends Application {
     private static final String telaPagamentoFile = "/view/Pagamento.fxml";
     public static String telaPagamentoCartao = "pagamentoCartao";
     private static final String telaPagamentoCartaoFile = "/view/PagamentoCartao.fxml";
+    public static String telaFeaturesConfig = "featureConfig";
+    private static final String telaFeaturesConfigFile = "/view/FeatureConfig.fxml";
     
     /**
      * colocado como global para que telas possam ser carregadas dinamicamente a partir de outros pontos do programa
