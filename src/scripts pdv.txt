@@ -1,0 +1,17 @@
+--Scripts de atualiza��o do banco PDV
+--Adicionar sempre scripts NO FIM DO ARQUIVO
+
+
+--28/11/14 Marcus Alexandre
+ALTER TABLE `pdv`.`caixaaberturafechamento` CHANGE COLUMN `data_fechamento` `data_fechamento` DATETIME NULL;
+
+--29/11/14 Marcus Alexandre
+ALTER TABLE `pdv`.`colaborador` DROP FOREIGN KEY `fk_colaborador_cargo` ;
+ALTER TABLE `pdv`.`colaborador` CHANGE COLUMN `corgo_id` `cargo_id` INT(11) NOT NULL  , 
+  ADD CONSTRAINT `fk_colaborador_cargo`
+  FOREIGN KEY (`cargo_id` )
+  REFERENCES `pdv`.`cargo` (`id_cargo` )
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+ALTER TABLE `pdv`.`caixaaberturafechamento` RENAME TO  `pdv`.`caixa` ;

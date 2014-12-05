@@ -37,15 +37,7 @@ public class LoginController implements Initializable, ControlledScreen {
     @FXML
     private PasswordField txtSenha;
     
-    @FXML
-    private Button btnConfiguracoes;    
-    
     ScreensController myController;    
-    
-    @FXML
-    void btnConfiguracoes_click(ActionEvent event) {
-        myController.setScreen(ScreensFramework.telaFeaturesConfig);
-    }
     
     @FXML
     private void handleButtonAction(ActionEvent event) {

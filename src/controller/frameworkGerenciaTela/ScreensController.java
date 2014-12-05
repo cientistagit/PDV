@@ -90,7 +90,7 @@ public class ScreensController extends StackPane {
             }
             return true;
         } else {
-            System.out.println("A tela '" + name + "' não pode ser carregada!");
+            System.out.println("A tela '" + name + "' não pode ser carregada! Verifique se o controller implementa a interface controlled screen \n");
             return false;
         }
 
