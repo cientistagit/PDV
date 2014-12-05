@@ -44,6 +44,9 @@ public class LoginController implements Initializable, ControlledScreen {
     
     @FXML
     void btnConfiguracoes_click(ActionEvent event) {
+        //caregar a tela
+        ScreensFramework.mainContainer.loadScreen(ScreensFramework.telaFeaturesConfig, ScreensFramework.telaFeaturesConfigFile);
+        //mudar de tela
         myController.setScreen(ScreensFramework.telaFeaturesConfig);
     }
     

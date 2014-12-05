@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 05/12/2014 19:18:02 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.Feature" table="feature" catalog="pdv" optimistic-lock="version">
         <id name="idFeature" type="java.lang.Integer">
@@ -8,10 +9,10 @@
             <generator class="identity" />
         </id>
         <property name="descricao" type="string">
-            <column name="descricao" length="90" />
+            <column name="descricao" length="90" not-null="true" />
         </property>
-        <property name="status" type="boolean">
-            <column name="status" />
+        <property name="status" type="char">
+            <column name="status" length="1" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

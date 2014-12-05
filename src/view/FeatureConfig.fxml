@@ -7,12 +7,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.FeatureConfigController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FeatureConfigController">
    <children>
       <TableView fx:id="tableFeature" layoutX="81.0" layoutY="43.0" prefHeight="243.0" prefWidth="401.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="257.0" text="Descriçaõ" />
+          <TableColumn prefWidth="75.0" text="ID" />
+          <TableColumn prefWidth="257.0" text="Descrição" />
             <TableColumn prefWidth="68.0" text="Status" />
         </columns>
       </TableView>

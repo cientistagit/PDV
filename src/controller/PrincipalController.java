@@ -47,6 +47,7 @@ public class PrincipalController implements Initializable, ControlledScreen {
 
     @FXML
     void btnCaixa_Click(ActionEvent event) {
+        //carregando a tela caixa
         ScreensFramework.mainContainer.loadScreen(ScreensFramework.telaCaixa, ScreensFramework.telaCaixaFile);
         myController.setScreen(ScreensFramework.telaCaixa);                        
     }
