@@ -32,4 +32,19 @@ public class DAOFeature {
         }
     }
     
+    public Feature buscar(String pDescricao){
+        Session session = NewHibernateUtil.getSessionFactory().getCurrentSession(); 
+        try { 
+            session.beginTransaction(); // Abre-se uma transação                      
+            String hql = "from Feature where descricao = :pDescricao";
+            Query query = session.createQuery(hql);   
+            query.setParameter("pDescricao", pDescricao);
+            return (Feature) query.uniqueResult();
+ 
+        } catch (Exception ex) {            
+            System.out.println(ex);
+            return null;
+        }
+    }
+    
 }

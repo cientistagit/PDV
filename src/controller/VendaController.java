@@ -105,7 +105,7 @@ public class VendaController implements Initializable, ControlledScreen {
     
         
     private Venda venda = new Venda();
-    private Produto p;
+    private Produto produto;
     private TabelaConsulta tbConsulta = new TabelaConsulta();
     private ArrayList<TabelaConsulta> listaProdutos = new ArrayList<TabelaConsulta>();
     
@@ -161,19 +161,19 @@ public class VendaController implements Initializable, ControlledScreen {
 
     @FXML
     private void handleAddItem() {
-        if (p != null) {
+        if (produto != null) {
             //                        
             //
-            p.setValorVenda(p.getValorVenda().setScale(2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(Integer.parseInt(quantidade.getText().trim()))));
+            produto.setValorVenda(produto.getValorVenda().setScale(2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(Integer.parseInt(quantidade.getText().trim()))));
             //            
-            float d = (p.getValorVenda().floatValue() * Float.parseFloat(desconto.getText())) / 100;  
-            p.setValorVenda(p.getValorVenda().subtract(BigDecimal.valueOf(d)));
+            float d = (produto.getValorVenda().floatValue() * Float.parseFloat(desconto.getText())) / 100;  
+            produto.setValorVenda(produto.getValorVenda().subtract(BigDecimal.valueOf(d)));
             //
             float valor = Float.parseFloat(total.getText());
-            valor += p.getValorVenda().setScale(2, RoundingMode.HALF_UP).floatValue();
+            valor += produto.getValorVenda().setScale(2, RoundingMode.HALF_UP).floatValue();
             total.setText(String.valueOf(convertValue(valor)));
             //
-            saveItem(p, Integer.parseInt(quantidade.getText().trim()), d);
+            saveItem(produto, Integer.parseInt(quantidade.getText().trim()), d);
             //
             clear();
         }
@@ -193,15 +193,15 @@ public class VendaController implements Initializable, ControlledScreen {
 
     @FXML
     private void handleSearchProduto() {
-        p = new Produto();
+        produto = new Produto();
         //
         //
         if (!idProduto.getText().trim().equals("")) {
-            p.setIdProduto(Integer.parseInt(idProduto.getText().trim()));
-            p = p.search(p);
-            if (p != null) {
-                descricao.setText(p.getDescricao());
-                valor.setText(String.valueOf(p.getValorVenda().setScale(2, RoundingMode.HALF_UP)));
+            produto.setIdProduto(Integer.parseInt(idProduto.getText().trim()));
+            produto = produto.search(produto);
+            if (produto != null) {
+                descricao.setText(produto.getDescricao());
+                valor.setText(String.valueOf(produto.getValorVenda().setScale(2, RoundingMode.HALF_UP)));
                 quantidade.setText("1");
                 desconto.setText("0");
             } else {
@@ -228,7 +228,7 @@ public class VendaController implements Initializable, ControlledScreen {
         quantidade.clear();
         checkDesconto.setSelected(false);
         desconto.setText("0");
-        p = null;
+        produto = null;
     }
 
     @Override
@@ -332,10 +332,10 @@ public class VendaController implements Initializable, ControlledScreen {
         this.checkDesconto.setSelected(false);
         this.desconto.setText("0.0");
         
-        p = new Produto();
-        p.setIdProduto(this.tbConsulta.getId());
-        p.setDescricao(this.tbConsulta.getDescricao());
-        p.setValorVenda(this.tbConsulta.getPreco().setScale(2, RoundingMode.HALF_UP));
+        produto = new Produto();
+        produto.setIdProduto(this.tbConsulta.getId());
+        produto.setDescricao(this.tbConsulta.getDescricao());
+        produto.setValorVenda(this.tbConsulta.getPreco().setScale(2, RoundingMode.HALF_UP));
         
         this.paneVenda.setVisible(true);
         this.paneConsulta.setVisible(false);

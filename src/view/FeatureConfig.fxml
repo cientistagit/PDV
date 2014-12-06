@@ -9,12 +9,16 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FeatureConfigController">
    <children>
-      <TableView fx:id="tableFeature" layoutX="81.0" layoutY="43.0" prefHeight="243.0" prefWidth="401.0">
+      <TableView fx:id="tableFeature" layoutX="41.0" layoutY="43.0" prefHeight="243.0" prefWidth="525.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="colunaCheck" prefWidth="78.0" text="check" />
+          <TableColumn prefWidth="121.0" text="ID" />
           <TableColumn prefWidth="257.0" text="Descrição" />
             <TableColumn prefWidth="68.0" text="Status" />
         </columns>
       </TableView>
+      <Button fx:id="btnAtivar" layoutX="41.0" layoutY="303.0" mnemonicParsing="false" onAction="#btnAtivar_click" text="Ativar" />
+      <Button fx:id="btnDesativar" layoutX="103.0" layoutY="303.0" mnemonicParsing="false" onAction="#btnDesativar_click" text="Desativar" />
+      <Button fx:id="btnVoltar" layoutX="481.0" layoutY="303.0" mnemonicParsing="false" onAction="#btnVoltar_click" text="&lt;&lt;Voltar" />
    </children>
 </AnchorPane>

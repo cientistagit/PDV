@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import model.BLL.BLLCaixa;
+import model.BLL.BLLFeatureManager;
 import view.ScreensFramework;
 
 
@@ -77,7 +78,12 @@ public class PrincipalController implements Initializable, ControlledScreen {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        //controle da feature cadastro de clientes
+        if(!BLLFeatureManager.featureEstaAtiva("Cadastro de Clientes"))
+        {
+            btnClientes.setVisible(false);
+        }
+            
     }    
     
     @Override

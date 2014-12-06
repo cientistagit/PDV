@@ -12,6 +12,8 @@ public class Feature  implements java.io.Serializable {
      private Integer idFeature;
      private String descricao;
      private char status;
+     private boolean ativa;
+     private String statusString;
 
     public Feature() {
     }
@@ -41,11 +43,43 @@ public class Feature  implements java.io.Serializable {
     
     public void setStatus(char status) {
         this.status = status;
+        if(status=='A')
+           this.ativa = true;
+       else
+           this.ativa = false;
+       this.setStatusString();
     }
 
+    /**
+     * @return the ativa
+     */
+    public boolean isAtiva() {
+        return ativa;
+    }
 
+    /**
+     * @param ativa the ativa to set
+     */
+    public void setAtiva(boolean ativa) {        
+        this.ativa = ativa;
+    }
 
+    /**
+     * @return the statusString
+     */
+    public String getStatusString() {
+        return statusString;
+    }
 
+    /**
+     * @param statusString the statusString to set
+     */
+    public void setStatusString() {
+        if (this.status == 'A')
+            this.statusString="Ativa";
+        else
+            this.statusString="Inativa";
+    }
 }
 
 
