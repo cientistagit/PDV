@@ -1,0 +1,5 @@
+0;Cadastro de Clientes;I
+1;Relatório de Atendimentos;I
+2;Pagamento com Troca;I
+3;Pagamento com Vale Presente;I
+4;Pagamento com Cheque;I

@@ -17,5 +17,6 @@
       <Button fx:id="btnConsultaProduto" layoutX="92.0" layoutY="179.0" mnemonicParsing="false" onAction="#btnConsultaProduto_Click" prefHeight="76.0" prefWidth="161.0" text="Consulta de Produtos" />
       <Button fx:id="btnRelatorios" layoutX="318.0" layoutY="179.0" mnemonicParsing="false" onAction="#btnRelatorios_Click" prefHeight="76.0" prefWidth="161.0" text="Relatorios" />
       <Button fx:id="btnClientes" layoutX="92.0" layoutY="279.0" mnemonicParsing="false" onAction="#btnClientes_Click" prefHeight="76.0" prefWidth="161.0" text="Clientes" />
+      <Button fx:id="btnSair" layoutX="489.0" layoutY="355.0" mnemonicParsing="false" onAction="#btnSair_click" text="Sair" />
    </children>
 </AnchorPane>

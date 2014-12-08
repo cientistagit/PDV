@@ -22,7 +22,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javax.swing.JOptionPane;
 import model.Colaborador;
 import model.TabelaConsulta;
@@ -117,6 +124,11 @@ public class VendaController implements Initializable, ControlledScreen {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        Image imageDecline = new Image(getClass().getResourceAsStream("/Recursos/Search_Magnifier.png"));
+        search.setGraphic(new ImageView(imageDecline));
+        
+
         
         // Inicialização das colunas da tabela de consulta
         this.columID.setCellValueFactory(new PropertyValueFactory<>("id"));

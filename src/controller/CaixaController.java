@@ -17,6 +17,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import model.BLL.BLLCaixa;
 import model.BLL.BLLUsuario;
 import model.Caixa;
@@ -88,12 +90,20 @@ public class CaixaController implements Initializable, ControlledScreen {
 
     @FXML
     void btnSuprimento_Click(ActionEvent event) {
-
+        double valor = Double.parseDouble(JOptionPane.showInputDialog(null, "Insira o valor ADICIONADO ao caixa. (R$)").replace(',', '.'));
+        //lógica
+        
+        //confirmação
+        JOptionPane.showMessageDialog(null, "Suprimento registrado com sucesso!","Confirmação", INFORMATION_MESSAGE);
     }
 
     @FXML
     void btnSangria_Click(ActionEvent event) {
-
+        double valor = Double.parseDouble(JOptionPane.showInputDialog(null, "Insira o valor RETIRADO do caixa. (R$)").replace(',', '.'));
+        //lógica
+        
+        //confirmação
+        JOptionPane.showMessageDialog(null, "Sangria registrada com sucesso!","Confirmação", INFORMATION_MESSAGE);
     }    
     
     @Override
