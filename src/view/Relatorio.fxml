@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RelatorioController">
+   <children>
+      <Button fx:id="btnRelAtendiemntos" layoutX="52.0" layoutY="72.0" mnemonicParsing="false" onAction="#btnRelAtendiemntos_click" prefHeight="76.0" prefWidth="178.0" text="Atendimentos" />
+      <Label layoutX="230.0" layoutY="14.0" text="RELATÓRIOS">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnRelComissao" layoutX="52.0" layoutY="169.0" mnemonicParsing="false" onAction="#btnRelComissao_click" prefHeight="76.0" prefWidth="178.0" text="Comissão de Vendedores" />
+      <Button fx:id="btnRelMercadorias" layoutX="339.0" layoutY="169.0" mnemonicParsing="false" onAction="#btnRelMercadorias_click" prefHeight="76.0" prefWidth="178.0" text="Mercadorias" />
+      <Button fx:id="btnRelConferenciaCaixa" layoutX="339.0" layoutY="72.0" mnemonicParsing="false" onAction="#btnRelConferenciaCaixa_click" prefHeight="76.0" prefWidth="178.0" text="Conferência de Caixa" />
+      <Button fx:id="btnVoltar" layoutX="507.0" layoutY="361.0" mnemonicParsing="false" onAction="#btnVoltar_click" text="&lt;&lt; Voltar" />
+   </children>
+</AnchorPane>

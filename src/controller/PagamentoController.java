@@ -61,7 +61,7 @@ public class PagamentoController implements Initializable, ControlledScreen {
         Tipopagamento tipo = new Tipopagamento();
         myController.setScreen(ScreensFramework.telaCaixa);
         Object[] opcoes = {"Cartão de crédito", "Cartão de débito"};
-                int n = JOptionPane.showOptionDialog(null, "Qual o tipo de cartão", "Escolha o tipo de cartão:", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
+                int n = JOptionPane.showOptionDialog(null, "", "Escolha o tipo de cartão:", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
                 if(n==0)
                     myController.setScreen(ScreensFramework.telaPagamentoCartao);
     }
@@ -117,12 +117,23 @@ public class PagamentoController implements Initializable, ControlledScreen {
                 Pagamentovenda pagamento = new Pagamentovenda();
                 Tipopagamento tipo = new Tipopagamento();
                 Object[] opcoes = {"Cartão de crédito", "Cartão de débito"};
-                int n = JOptionPane.showOptionDialog(null, "Qual o tipo de cartão", "", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
+                int n = JOptionPane.showOptionDialog(null, "", "Escolha o tipo de cartão:", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
                 if(n == 0){
                     myController.setScreen(ScreensFramework.telaPagamentoCartao);
                 }
             }
-        });       
+        });
+        
+        /*btnCartao.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event) {
+                Pagamentovenda pagamento = new Pagamentovenda();
+                Tipopagamento tipo = new Tipopagamento();
+                Object[] opcoes = {"Cartão de crédito", "Cartão de débito"};
+                int n = JOptionPane.showOptionDialog(null, "Qual o tipo de cartão", "Escolha o tipo de cartão:", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
+                myController.setScreen(ScreensFramework.telaPagamentoCartao);
+            }
+        });*/
     }
     
     @FXML

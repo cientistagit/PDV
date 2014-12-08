@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MercadoriasController">
+   <children>
+      <Label layoutX="130.0" layoutY="14.0" text="RELATÓRIOS DE MERCADORIAS">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnRelEstoque" layoutX="57.0" layoutY="83.0" mnemonicParsing="false" onAction="#btnRelEstoque_click" prefHeight="82.0" prefWidth="175.0" text="Estoque" />
+      <Button fx:id="btnRelEntradas" layoutX="344.0" layoutY="83.0" mnemonicParsing="false" onAction="#btnRelEntradas_click" prefHeight="82.0" prefWidth="175.0" text="Entradas" />
+      <Button fx:id="btnRelSaidas" layoutX="57.0" layoutY="200.0" mnemonicParsing="false" onAction="#btnRelSaidas_click" prefHeight="82.0" prefWidth="175.0" text="Saídas" />
+      <Button fx:id="btnVoltar" layoutX="487.0" layoutY="352.0" mnemonicParsing="false" onAction="#btnVoltar_click" text="&lt;&lt;Voltar" />
+   </children>
+</AnchorPane>

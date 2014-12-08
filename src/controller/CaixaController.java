@@ -8,7 +8,6 @@ package controller;
 import controller.frameworkGerenciaTela.ControlledScreen;
 import controller.frameworkGerenciaTela.ScreensController;
 import java.net.URL;
-import java.text.Format;
 import java.text.NumberFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -35,28 +34,17 @@ public class CaixaController implements Initializable, ControlledScreen {
      * Initializes the controller class.
      */
     
-    @FXML
-    private Button btnSuprimento;
-    @FXML
-    private Button btnFecharCaixa;
-    @FXML
-    private Button btnAbrirCaixa;
-    @FXML
-    private Button btnSangria;    
-    @FXML
-    private Button btnVoltar;   
-    @FXML
-    private Label lblCaixa;   
-    @FXML
-    private Label lblValorCaixa;    
-    @FXML
-    private Label lblUsuario;
-    @FXML
-    private Button btnConferenciaCaixa;        
-    @FXML
-    private Label label1;
-    @FXML
-    private Label lblValor;
+    @FXML private Button btnSuprimento;
+    @FXML private Button btnFecharCaixa;
+    @FXML private Button btnAbrirCaixa;
+    @FXML private Button btnSangria;    
+    @FXML private Button btnVoltar;   
+    @FXML private Label lblCaixa;   
+    @FXML private Label lblValorCaixa;    
+    @FXML private Label lblUsuario;
+    @FXML private Button btnConferenciaCaixa;        
+    @FXML private Label label1;
+    @FXML private Label lblValor;
     
     ScreensController myController;
     
@@ -121,6 +109,7 @@ public class CaixaController implements Initializable, ControlledScreen {
         }
         else
         {
+            btnFecharCaixa.setDisable(true);
             lblCaixa.setText("CAIXA FECHADO");
             this.setExibicaoCaixaAberto(false);
         }

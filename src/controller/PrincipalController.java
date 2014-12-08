@@ -29,24 +29,15 @@ import view.ScreensFramework;
  */
 public class PrincipalController implements Initializable, ControlledScreen {
 
-
     ScreensController myController;
     
-    @FXML
-    private Button btnCaixa;
-    @FXML
-    private Button btnConsultaProduto;
-    @FXML
-    private Button btnVenda;
-    @FXML
-    private Button btnRelatorios;
-    @FXML
-    private Button btnClientes;
-    @FXML
-    private Button btnSair;
-    
-    
-
+    @FXML private Button btnCaixa;
+    @FXML private Button btnConsultaProduto;
+    @FXML private Button btnVenda;
+    @FXML private Button btnRelatorios;
+    @FXML private Button btnClientes;
+    @FXML private Button btnSair;
+    @FXML private Button btnOrcamentos;    
 
     @FXML
     void btnCaixa_Click(ActionEvent event) {
@@ -67,13 +58,18 @@ public class PrincipalController implements Initializable, ControlledScreen {
 
     @FXML
     void btnRelatorios_Click(ActionEvent event) {
-        //myController.setScreen(ScreensFramework.tela);
+        myController.setScreen(ScreensFramework.telaRelatorios);
     }
 
     @FXML
     void btnClientes_Click(ActionEvent event) {
 
     }
+    
+    @FXML
+    void btnOrcamentos_click(ActionEvent event) {
+
+    }    
     
     @FXML
     void btnSair_click(ActionEvent event) {
@@ -97,6 +93,12 @@ public class PrincipalController implements Initializable, ControlledScreen {
         {
             btnClientes.setVisible(false);
         }
+        //controle da feature Orçamentos
+        if(!BLLFeatureManager.featureEstaAtiva("Orçamentos"))
+        {
+            btnOrcamentos.setVisible(false);
+        }
+        
             
     }    
     

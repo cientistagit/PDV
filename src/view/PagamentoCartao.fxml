@@ -25,5 +25,6 @@
             </FXCollections>
             </items> 
       </ComboBox>
+      <Button fx:id="btnVoltar" layoutX="458.0" layoutY="340.0" mnemonicParsing="false" onAction="#btnVoltar_click" text="&lt;&lt;Voltar" />
    </children>
 </AnchorPane>

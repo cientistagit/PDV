@@ -34,6 +34,10 @@ public class ScreensFramework extends Application {
     private static final String telaPagamentoCartaoFile = "/view/PagamentoCartao.fxml";
     public static String telaFeaturesConfig = "featureConfig";
     public static final String telaFeaturesConfigFile = "/view/FeatureConfig.fxml";
+    public static String telaRelatorios = "relarorios";
+    public static final String telaRelatoriosFile = "/view/Relatorio.fxml";
+    public static String telaRelMercadorias = "relarorioMercadorias";
+    public static final String telaRelMercadoriasFile = "/view/Mercadorias.fxml";
     
     /**
      * colocado como global para que telas possam ser carregadas dinamicamente a partir de outros pontos do programa
@@ -52,6 +56,8 @@ public class ScreensFramework extends Application {
         mainContainer.loadScreen(ScreensFramework.telaVenda, ScreensFramework.telaVendaFile);
         mainContainer.loadScreen(ScreensFramework.telaPagamento, ScreensFramework.telaPagamentoFile);
         mainContainer.loadScreen(ScreensFramework.telaPagamentoCartao, ScreensFramework.telaPagamentoCartaoFile);
+        mainContainer.loadScreen(ScreensFramework.telaRelatorios, ScreensFramework.telaRelatoriosFile);
+        mainContainer.loadScreen(ScreensFramework.telaRelMercadorias, ScreensFramework.telaRelMercadoriasFile);
         //mainContainer.loadScreen(ScreensFramework.telaFeaturesConfig, ScreensFramework.telaFeaturesConfigFile); //tela carregada ao clicar no botão configurações
         
         mainContainer.setScreen(ScreensFramework.telaLogin);
