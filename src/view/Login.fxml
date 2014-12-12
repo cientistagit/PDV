@@ -7,13 +7,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="438.0" prefWidth="662.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="438.0" prefWidth="613.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
     <children>
-        <Button id="btnLogin" fx:id="btnLogin" defaultButton="true" layoutX="297.0" layoutY="244.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="70.0" text="Login" />
-        <Label id="labelMsg" fx:id="labelMsg" layoutX="177.0" layoutY="216.0" minHeight="16" minWidth="69" prefHeight="33.0" prefWidth="149.0" text="Login/Senha incorreta!" textFill="#dd0808" visible="false" />
-      <TextField id="txtLogin" fx:id="txtLogin" layoutX="257.0" layoutY="139.0" promptText="Login" />
-      <PasswordField id="txtSenha" fx:id="txtSenha" layoutX="257.0" layoutY="183.0" promptText="Senha" />
+        <Button id="btnLogin" fx:id="btnLogin" defaultButton="true" layoutX="245.0" layoutY="243.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="70.0" text="Login" />
+        <Label id="labelMsg" fx:id="labelMsg" layoutX="200.0" layoutY="213.0" minHeight="16" minWidth="69" prefHeight="32.0" prefWidth="159.0" text="Login/Senha incorreta!" textFill="#dd0808" visible="false" />
+      <TextField id="txtLogin" fx:id="txtLogin" layoutX="205.0" layoutY="138.0" promptText="Login" />
+      <PasswordField id="txtSenha" fx:id="txtSenha" layoutX="205.0" layoutY="182.0" promptText="Senha" />
       <ImageView id="imgLogin" fitHeight="80.0" fitWidth="93.0" layoutX="200.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="btnConfiguracoes" layoutX="496.0" layoutY="356.0" mnemonicParsing="false" onAction="#btnConfiguracoes_click" text="Configurações" />
+      <Button fx:id="btnConfiguracoes" layoutX="446.0" layoutY="356.0" mnemonicParsing="false" onAction="#btnConfiguracoes_click" text="Configurações" />
     </children>
 </AnchorPane>

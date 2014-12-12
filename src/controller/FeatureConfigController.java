@@ -5,11 +5,9 @@
  */
 package controller;
 
-import view.util.CheckBoxTableCell;
 import controller.frameworkGerenciaTela.ControlledScreen;
 import controller.frameworkGerenciaTela.ScreensController;
 import java.net.URL;
-import java.time.Clock;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -21,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import model.Feature;
@@ -57,11 +56,9 @@ public class FeatureConfigController implements Initializable, ControlledScreen 
         //List<Feature> features = tableFeature.getItems();
         List<Feature> features = tableFeature.getSelectionModel().getSelectedItems();
         for(Feature feature : features)
-        {   
-            
-            System.out.println(feature.isAtiva());
+        {               
+            System.out.println(feature.isAtiva());            
         }
-
     }
 
     @FXML
@@ -81,17 +78,22 @@ public class FeatureConfigController implements Initializable, ControlledScreen 
         //obtenho a lista de features
         listaFeatures = dao.listar();
         
+        ObservableList<Feature> data = FXCollections.observableArrayList();
+        for (Feature feature : listaFeatures) {
+            Feature featureAdd = new Feature(feature.getIdFeature(), feature.getDescricao(), feature.getStatus());
+            data.add(featureAdd);
+        }  
+        
         // Inicialização das colunas da tabela de features
         tableFeature.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("ativa"));        
         tableFeature.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("idFeature"));
         tableFeature.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("descricao"));
         tableFeature.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("statusString"));
-        colunaCheck.setCellFactory((new Callback<TableColumn<Feature, Boolean>, TableCell<Feature, Boolean>>() {
-            @Override
+        colunaCheck.setCellFactory(new Callback<TableColumn<Feature, Boolean>, TableCell<Feature, Boolean>>() {
             public TableCell<Feature, Boolean> call(TableColumn<Feature, Boolean> p) {
                 return new CheckBoxTableCell<Feature, Boolean>();
             }
-        }));
+        });
         colunaCheck.setEditable(true);
         tableFeature.setEditable(true);
         
@@ -102,9 +104,9 @@ public class FeatureConfigController implements Initializable, ControlledScreen 
         tableFeature.setItems(data);
                 */
         //adiciona as features na tabela
-        for (Feature feature : listaFeatures) {
-            tableFeature.getItems().add(feature);
-        }        
+        //for (Feature feature : listaFeatures) {
+          //  tableFeature.getItems().add(feature);
+        //}        
     }    
     
     @Override

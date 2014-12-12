@@ -7,9 +7,12 @@ package controller;
 
 import controller.frameworkGerenciaTela.ControlledScreen;
 import controller.frameworkGerenciaTela.ScreensController;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
@@ -26,25 +29,15 @@ import view.ScreensFramework;
  */
 public class PrincipalController implements Initializable, ControlledScreen {
 
-
     ScreensController myController;
     
-    @FXML
-    private Button btnCaixa;
-
-    @FXML
-    private Button btnConsultaProduto;
-
-    @FXML
-    private Button btnVenda;
-
-    @FXML
-    private Button btnRelatorios;
-
-    @FXML
-    private Button btnClientes;
-    
-
+    @FXML private Button btnCaixa;
+    @FXML private Button btnConsultaProduto;
+    @FXML private Button btnVenda;
+    @FXML private Button btnRelatorios;
+    @FXML private Button btnClientes;
+    @FXML private Button btnSair;
+    @FXML private Button btnOrcamentos;    
 
     @FXML
     void btnCaixa_Click(ActionEvent event) {
@@ -65,7 +58,7 @@ public class PrincipalController implements Initializable, ControlledScreen {
 
     @FXML
     void btnRelatorios_Click(ActionEvent event) {
-        //myController.setScreen(ScreensFramework.tela);
+        myController.setScreen(ScreensFramework.telaRelatorios);
     }
 
     @FXML
@@ -73,16 +66,39 @@ public class PrincipalController implements Initializable, ControlledScreen {
 
     }
     
+    @FXML
+    void btnOrcamentos_click(ActionEvent event) {
+
+    }    
+    
+    @FXML
+    void btnSair_click(ActionEvent event) {
+        myController.setScreen(ScreensFramework.telaLogin);
+    }    
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        try {
+            //carregar lista de features do arquivo
+            BLLFeatureManager.carregarFeatures();
+        } catch (IOException ex) {
+            System.out.println("Erro na leitra do arquivo de features");
+        }
+
         //controle da feature cadastro de clientes
         if(!BLLFeatureManager.featureEstaAtiva("Cadastro de Clientes"))
         {
             btnClientes.setVisible(false);
         }
+        //controle da feature Orçamentos
+        if(!BLLFeatureManager.featureEstaAtiva("Orçamentos"))
+        {
+            btnOrcamentos.setVisible(false);
+        }
+        
             
     }    
     

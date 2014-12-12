@@ -11,11 +11,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import view.ScreensFramework;
 
 /**
  * FXML Controller class
@@ -24,14 +25,16 @@ import javafx.scene.control.ComboBox;
  */
 public class PagamentoCartaoController implements Initializable, ControlledScreen {
 
-    @FXML
-    private Button btnMaster;
-
-    @FXML
-    private Button btnVisa;
+    @FXML private Button btnMaster;
+    @FXML private Button btnVisa;   
+    @FXML private Button btnVoltar;   
+    @FXML private ComboBox<String> combo;  
     
     @FXML
-    private ComboBox<String> combo;  
+    void btnVoltar_click(ActionEvent event) {
+        myController.setScreen(ScreensFramework.telaPagamento);
+    }
+
     
     /**
      * Initializes the controller class.
@@ -41,11 +44,7 @@ public class PagamentoCartaoController implements Initializable, ControlledScree
     
     @FXML
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        assert btnMaster != null : "fx:id=\"btnMaster\" was not injected: check your FXML file 'PagamentoCartao.fxml'.";
-        assert btnVisa != null : "fx:id=\"btnVisa\" was not injected: check your FXML file 'PagamentoCartao.fxml'.";
-        assert combo != null : "fx:id=\"combo\" was not injected: check your FXML file 'PagamentoCartao.fxml'.";
+    public void initialize(URL url, ResourceBundle rb) {        
         combo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
 
             @Override

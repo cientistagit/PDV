@@ -1,6 +1,14 @@
 package model;
 // Generated 05/12/2014 19:18:02 by Hibernate Tools 4.3.1
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+
+
 
 
 /**
@@ -9,20 +17,52 @@ package model;
 public class Feature  implements java.io.Serializable {
 
 
-     private Integer idFeature;
+     private Integer idFeature;    
+     private char status;      
      private String descricao;
-     private char status;
-     private boolean ativa;
+     private StringProperty descricaoProp;
+     public BooleanProperty ativa;
      private String statusString;
-
+    
     public Feature() {
     }
+    
+    public Feature(String descricao, char status) {  
+        this.descricao = descricao;
+        this.descricaoProp = new SimpleStringProperty(descricao);
+        this.status = status;
+        this.setStatusString();
+        if(status == 'A')
+            this.ativa = new SimpleBooleanProperty(true);   
+        else
+            this.ativa = new SimpleBooleanProperty(false);  
+        /*
+        this.ativa.addListener(new ChangeListener<Boolean>() {
+                public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
+                    System.out.println(getDescricaoProp().get() + " ativa: " + t1);
+                }
+            });
+        */
+    }  
 
-    public Feature(String descricao, char status) {
-       this.descricao = descricao;
-       this.status = status;
-    }
-   
+    public Feature(Integer id, String descricao, char status) {
+        this.idFeature = id;
+        this.descricao = descricao;
+        this.descricaoProp = new SimpleStringProperty(descricao);
+        this.status = status;
+        if(status == 'A')
+            this.ativa = new SimpleBooleanProperty(true);   
+        else
+            this.ativa = new SimpleBooleanProperty(false);  
+        this.setStatusString();
+        
+        this.ativa.addListener(new ChangeListener<Boolean>() {
+                public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
+                    System.out.println(getDescricaoProp().get() + " ativa: " + t1);
+                }
+            });
+    }  
+    
     public Integer getIdFeature() {
         return this.idFeature;
     }
@@ -30,12 +70,12 @@ public class Feature  implements java.io.Serializable {
     public void setIdFeature(Integer idFeature) {
         this.idFeature = idFeature;
     }
-    public String getDescricao() {
-        return this.descricao;
+    public StringProperty getDescricaoProp() {
+        return this.descricaoProp;
     }
     
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setDescricaoProp(String descricao) {
+        this.descricaoProp.set(descricao);
     }
     public char getStatus() {
         return this.status;
@@ -43,25 +83,21 @@ public class Feature  implements java.io.Serializable {
     
     public void setStatus(char status) {
         this.status = status;
-        if(status=='A')
-           this.ativa = true;
-       else
-           this.ativa = false;
        this.setStatusString();
     }
 
     /**
      * @return the ativa
      */
-    public boolean isAtiva() {
-        return ativa;
+    public BooleanProperty isAtiva() {
+        return this.ativa;
     }
 
     /**
      * @param ativa the ativa to set
      */
     public void setAtiva(boolean ativa) {        
-        this.ativa = ativa;
+        this.ativa.set(ativa);
     }
 
     /**
@@ -72,7 +108,6 @@ public class Feature  implements java.io.Serializable {
     }
 
     /**
-     * @param statusString the statusString to set
      */
     public void setStatusString() {
         if (this.status == 'A')
@@ -80,6 +115,21 @@ public class Feature  implements java.io.Serializable {
         else
             this.statusString="Inativa";
     }
+
+    /**
+     * @return the descricao
+     */
+    public String getDescricao() {
+        return descricao;
+    }
+
+    /**
+     * @param descricao the descricao to set
+     */
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+    
 }
 
 

@@ -1,0 +1,11 @@
+0;Cadastro de Clientes;I
+1;Orçamentos;I
+2;Pagamento com Troca;I
+3;Pagamento com Vale Presente;I
+4;Pagamento com Cheque;I
+5;Relatório de Comissão de Vendedores;I
+6;Relatório de Mercadorias;I
+7;Relatório de Estoque;I
+8;Relatório de Entradas;I
+9;Relatório de Saidas;I
+10;Relatório de Caixa;I
