@@ -17,5 +17,6 @@
       <Button fx:id="btnDinheiro" layoutX="37.0" layoutY="166.0" mnemonicParsing="false" onMouseClicked="#btnDinheiroClicked" prefHeight="68.0" prefWidth="128.0" text="Dinheiro" />
       <Button fx:id="btnCheque" layoutX="236.0" layoutY="166.0" mnemonicParsing="false" onMouseClicked="#btnChequeClicked" prefHeight="68.0" prefWidth="128.0" text="Cheque" />
       <Button fx:id="btnCartao" layoutX="430.0" layoutY="166.0" mnemonicParsing="false" onMouseClicked="#btnCartaoClicked" prefHeight="68.0" prefWidth="128.0" text="Cartão" />
+      <Button fx:id="btnVoltar" layoutX="37.0" layoutY="344.0" mnemonicParsing="false" text="&lt;&lt; Voltar" />
    </children>
 </AnchorPane>
