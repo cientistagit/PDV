@@ -6,6 +6,7 @@
 package controller;
 
 import controller.frameworkGerenciaTela.ControlledScreen;
+import controller.frameworkGerenciaTela.ControlledScreenWithObject;
 import controller.frameworkGerenciaTela.ScreensController;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,6 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javax.swing.JOptionPane;
 import model.Pagamentovenda;
 import model.Tipopagamento;
+import model.Venda;
 import view.ScreensFramework;
 
 /**
@@ -25,9 +27,11 @@ import view.ScreensFramework;
  *
  * @author Ikaro
  */
-public class PagamentoController implements Initializable, ControlledScreen {
+public class PagamentoController implements Initializable, ControlledScreenWithObject {
     
     ScreensController myController;
+    
+    private Venda venda = new Venda();
     
     @FXML
     private ResourceBundle resources;
@@ -43,10 +47,17 @@ public class PagamentoController implements Initializable, ControlledScreen {
 
     @FXML
     private Button btnCheque;
+    
+    @FXML
+    private Button btnVoltar;
 
     @FXML
     void initialize() {
         
+    }
+    
+    private void setVenda(Venda venda){
+        this.venda = venda; 
     }
     
     @FXML protected void btnDinheiroClicked(ActionEvent event) {
@@ -79,7 +90,11 @@ public class PagamentoController implements Initializable, ControlledScreen {
                     myController.setScreen(ScreensFramework.telaPagamentoCartao);
     }
     
-    private void initListeners(){
+    @FXML
+    void btnVoltarClicked(ActionEvent event) {
+        myController.setScreen(ScreensFramework.telaVenda);
+    }
+    /*private void initListeners(){
         btnDinheiro.setOnMouseClicked(new EventHandler<MouseEvent>() {
            @Override
             public void handle(MouseEvent event) {
@@ -91,16 +106,7 @@ public class PagamentoController implements Initializable, ControlledScreen {
             }
         });
         
-        /*btnDinheiro.setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent event) {
-                Pagamentovenda pagamento = new Pagamentovenda();
-                Tipopagamento tipo = new Tipopagamento();
-                tipo.setDescricao("Dinheiro");
-                pagamento.setTipopagamento(tipo);
-                pagamento.setNumeroParcelas(0);
-            }
-        });*/
+       
         
         btnCheque.setOnMouseClicked(new EventHandler<MouseEvent>() {
            @Override
@@ -113,17 +119,7 @@ public class PagamentoController implements Initializable, ControlledScreen {
             }
         });
         
-        /*btnCheque.setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent event) {
-                Pagamentovenda pagamento = new Pagamentovenda();
-                Tipopagamento tipo = new Tipopagamento();
-                tipo.setDescricao("Cheque");
-                pagamento.setTipopagamento(tipo);
-                pagamento.setNumeroParcelas(0);
-            }
-        });*/
-        
+ 
         btnCartao.setOnMouseClicked(new EventHandler<MouseEvent>() {
            @Override
             public void handle(MouseEvent event) {
@@ -137,7 +133,7 @@ public class PagamentoController implements Initializable, ControlledScreen {
             }
         });
         
-        /*btnCartao.setOnAction(new EventHandler<ActionEvent>(){
+        btnCartao.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event) {
                 Pagamentovenda pagamento = new Pagamentovenda();
@@ -146,8 +142,8 @@ public class PagamentoController implements Initializable, ControlledScreen {
                 int n = JOptionPane.showOptionDialog(null, "Qual o tipo de cartão", "Escolha o tipo de cartão:", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
                 myController.setScreen(ScreensFramework.telaPagamentoCartao);
             }
-        });*/
-    }
+        });
+    }*/
 
     /**
      * Initializes the controller class.
@@ -155,14 +151,15 @@ public class PagamentoController implements Initializable, ControlledScreen {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        initListeners();
+        //initListeners();
         
         //COLOCAR O COMANDO SQL NA AÇÂO DE CADA BOTÂO CLICADO.
     }    
 
     @Override
-    public void setScreenParent(ScreensController screenPage) {
+    public void setScreenParentwithObject(ScreensController screenPage, Venda ven) {
         myController = screenPage;
+        venda = ven;        
     }
     
 }
