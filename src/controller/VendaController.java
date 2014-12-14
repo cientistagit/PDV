@@ -117,6 +117,7 @@ public class VendaController implements Initializable, ControlledScreen {
     private ArrayList<TabelaConsulta> listaProdutos = new ArrayList<TabelaConsulta>();
     
     private ScreensController myController;
+    public PagamentoController pagamento;
     
     
     /**
@@ -152,6 +153,7 @@ public class VendaController implements Initializable, ControlledScreen {
     
     @FXML
     void btnPagar_Click(ActionEvent event) {
+        pagamento.setVenda(venda);
         myController.setScreen(ScreensFramework.telaPagamento);
     }
 

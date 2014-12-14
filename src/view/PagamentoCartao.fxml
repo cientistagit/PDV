@@ -26,5 +26,6 @@
             </items> 
       </ComboBox>
       <Button fx:id="btnVoltar" layoutX="458.0" layoutY="340.0" mnemonicParsing="false" onAction="#btnVoltar_click" text="&lt;&lt;Voltar" />
+      <Button fx:id="btnPagar" layoutX="74.0" layoutY="340.0" mnemonicParsing="false" onAction="#btnVoltar_click" prefHeight="25.0" prefWidth="98.0" text="Pagar" />
    </children>
 </AnchorPane>

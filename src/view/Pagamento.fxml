@@ -18,7 +18,7 @@
       <Button fx:id="btnCheque" layoutX="236.0" layoutY="98.0" mnemonicParsing="false" onMouseClicked="#btnChequeClicked" prefHeight="68.0" prefWidth="128.0" text="Cheque" />
       <Button fx:id="btnCartao" layoutX="426.0" layoutY="98.0" mnemonicParsing="false" onMouseClicked="#btnCartaoClicked" prefHeight="68.0" prefWidth="128.0" text="Cartão" />
       <Button fx:id="btnVoltar" layoutX="490.0" layoutY="351.0" mnemonicParsing="false" onAction="#btnVoltar_click" text="&lt;&lt; Voltar" />
-      <Button fx:id="btnTroca" layoutX="38.0" layoutY="216.0" mnemonicParsing="false" onMouseClicked="#btnDinheiroClicked" prefHeight="68.0" prefWidth="128.0" text="Troca" />
-      <Button fx:id="btnValePresente" layoutX="236.0" layoutY="216.0" mnemonicParsing="false" onMouseClicked="#btnDinheiroClicked" prefHeight="68.0" prefWidth="128.0" text="Vale Presente" />
+      <Button fx:id="btnTroca" layoutX="38.0" layoutY="216.0" mnemonicParsing="false" onMouseClicked="#btnTrocaClicked" prefHeight="68.0" prefWidth="128.0" text="Troca" />
+      <Button fx:id="btnValePresente" layoutX="236.0" layoutY="216.0" mnemonicParsing="false" onMouseClicked="#btnValePresenteClicked" prefHeight="68.0" prefWidth="128.0" text="Vale Presente" />
    </children>
 </AnchorPane>
