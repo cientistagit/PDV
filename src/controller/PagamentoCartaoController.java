@@ -11,6 +11,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -30,6 +32,8 @@ import view.ScreensFramework;
  * @author comum
  */
 public class PagamentoCartaoController implements Initializable, ControlledScreen {
+    Pagamentovenda pagamento = new Pagamentovenda();
+    Tipopagamento tipo = new Tipopagamento();
    
     @FXML private Button btnMaster;
     @FXML private Button btnVisa;   
@@ -43,11 +47,24 @@ public class PagamentoCartaoController implements Initializable, ControlledScree
     }
     
     void btnPagar_click(ActionEvent event) {
-        Pagamentovenda pagamento = new Pagamentovenda();
-        Tipopagamento tipo = new Tipopagamento();
-        tipo.setDescricao("Cartão de Crédito");
                     pagamento.setTipopagamento(tipo);
-                    pagamento.setNumeroParcelas(0);
+                    if(combo.getValue() != null && !combo.getValue().toString().isEmpty()){
+                        if(combo.getValue().toString().equals("à vista"))
+                             pagamento.setNumeroParcelas(0);
+                        if(combo.getValue().toString().equals("2x"))
+                             pagamento.setNumeroParcelas(2);
+                        if(combo.getValue().toString().equals("4x"))
+                             pagamento.setNumeroParcelas(4);
+                        if(combo.getValue().toString().equals("6x"))
+                             pagamento.setNumeroParcelas(6);
+                        if(combo.getValue().toString().equals("8x"))
+                             pagamento.setNumeroParcelas(8);
+                        if(combo.getValue().toString().equals("10x"))
+                             pagamento.setNumeroParcelas(10);
+                        if(combo.getValue().toString().equals("12x"))
+                             pagamento.setNumeroParcelas(12);
+                    }
+                    System.out.println(pagamento.getNumeroParcelas());
         JOptionPane.showMessageDialog(null, "Pagamento efetuado com cartão de crédito.");
         myController.setScreen(ScreensFramework.telaCaixa);
     }
@@ -63,9 +80,26 @@ public class PagamentoCartaoController implements Initializable, ControlledScree
         btnPagar.setOnMouseClicked(new EventHandler<MouseEvent>() {
            @Override
             public void handle(MouseEvent event) {
+                pagamento.setTipopagamento(tipo);
+                    if(combo.getValue() != null && !combo.getValue().toString().isEmpty()){
+                        if(combo.getValue().toString().equals("à vista"))
+                             pagamento.setNumeroParcelas(0);
+                        if(combo.getValue().toString().equals("2x"))
+                             pagamento.setNumeroParcelas(2);
+                        if(combo.getValue().toString().equals("4x"))
+                             pagamento.setNumeroParcelas(4);
+                        if(combo.getValue().toString().equals("6x"))
+                             pagamento.setNumeroParcelas(6);
+                        if(combo.getValue().toString().equals("8x"))
+                             pagamento.setNumeroParcelas(8);
+                        if(combo.getValue().toString().equals("10x"))
+                             pagamento.setNumeroParcelas(10);
+                        if(combo.getValue().toString().equals("12x"))
+                             pagamento.setNumeroParcelas(12);
+                    }
                 JOptionPane.showMessageDialog(null, "Pagamento efetuado com cartão de crédito.");
                 myController.setScreen(ScreensFramework.telaCaixa); 
-                combo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+               /* combo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
 
                 @Override
                 public void changed(ObservableValue observable, Object oldValue, Object newValue) {
@@ -73,21 +107,23 @@ public class PagamentoCartaoController implements Initializable, ControlledScree
                     // COLOCAR O COMANDO SQL
 
                 }
-                });
+                });*/
             }
         });
         
         btnVisa.setOnMouseClicked(new EventHandler<MouseEvent>() {
            @Override
             public void handle(MouseEvent event) {
-                btnVisa.setStyle(null);
+                JOptionPane.showMessageDialog(null, "Visa selecionado.");
+                tipo.setDescricao("Cartão de Crédito - Visa");
                 }
         });
         
         btnMaster.setOnMouseClicked(new EventHandler<MouseEvent>() {
            @Override
             public void handle(MouseEvent event) {
-                btnMaster.setStyle(null);
+                JOptionPane.showMessageDialog(null, "MasterCard selecionado.");
+                tipo.setDescricao("Cartão de Crédito - MasterCard");
                 }
         });
     }
@@ -100,7 +136,8 @@ public class PagamentoCartaoController implements Initializable, ControlledScree
 
     @Override
     public void setScreenParent(ScreensController screenPage) {
-         myController = screenPage;
+        //screenPage.getStylesheets().add("/view.css/button.css");
+        myController = screenPage;
     }
     
 }
