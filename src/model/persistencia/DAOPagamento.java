@@ -7,7 +7,9 @@ package model.persistencia;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Pagamentovenda;
 import model.TabelaConsulta;
+import model.Tipopagamento;
 import model.Venda;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -23,29 +25,18 @@ import org.hibernate.type.StringType;
  * @author comum
  */
 public class DAOPagamento {
-    public void pagar(Venda venda) {
+    public void pagar(Venda venda, Pagamentovenda pagvenda, Tipopagamento tipopag) {
         
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
 
         try {
             tx = session.beginTransaction(); // Abre-se uma transação
-
-            String sql = "select prodg.produto_id as id, prod.descricao as descricao, tam.descricao as tamanho, cor.descricao as cor, prod.valor_venda as preco" +
-                            " from PRODUTOGRADE prodg, PRODUTO prod, TAMANHO tam, COR cor " +
-                            " where prodg.produto_id = prod.id_produto " +
-                                " and prodg.tamanho_id = tam.id_tamanho " +
-                                " and prodg.cor_id = cor.id_cor " +
-                            " and prodg.produto_id = :cod " +
-                            "order by id, descricao, cor, tamanho asc";
-          
-            Query query = session.createSQLQuery(sql)   
-                    .addScalar("id", IntegerType.INSTANCE)
-                    .addScalar("descricao", StringType.INSTANCE)
-                    .addScalar("tamanho", StringType.INSTANCE)
-                    .addScalar("cor", StringType.INSTANCE)
-                    .addScalar("preco", BigDecimalType.INSTANCE);
-           
+            
+            //tutorial: http://howtodoinjava.com/2013/06/28/hibernate-insert-query-tutorial/
+            session.save(tipopag);
+            session.save(pagvenda);
+            session.save(venda);
 
             //session.getTransaction().commit();      // Realiza definitivamente todas as operações pendentes na transação
             tx.commit();
