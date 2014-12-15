@@ -31,182 +31,231 @@ import view.ScreensFramework;
  * @author Ikaro
  */
 public class PagamentoController implements Initializable, ControlledScreen {
-    
+
     ScreensController myController;
-    
+
     public Venda venda = null;
-    
-    @FXML private ResourceBundle resources;
-    @FXML private URL location;   
-    @FXML private Button btnCartao;
-    @FXML private Button btnDinheiro;
-    @FXML private Button btnCheque;   
-    @FXML private Button btnVoltar;
-    @FXML private Button btnTroca;
-    @FXML private Button btnValePresente;
-    @FXML private Label lblTotalPagar;
-    @FXML private Label lblTotalPago;    
-    
+
+    @FXML
+    private ResourceBundle resources;
+    @FXML
+    private URL location;
+    @FXML
+    private Button btnCartao;
+    @FXML
+    private Button btnDinheiro;
+    @FXML
+    private Button btnCheque;
+    @FXML
+    private Button btnVoltar;
+    @FXML
+    private Button btnTroca;
+    @FXML
+    private Button btnValePresente;
+    @FXML
+    private Label lblTotalPagar;
+    @FXML
+    private Label lblTotalPago;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         initListeners();
         this.venda = BLLVenda.ultimaVenda;
         lblTotalPagar.setText(NumberFormat.getCurrencyInstance().format(venda.getValorTotal()));
         lblTotalPago.setText(NumberFormat.getCurrencyInstance().format(0)); //total de pagamentos parciais.    
-        
+
         //controle da feature cadastro de clientes
-        if(!BLLFeatureManager.featureEstaAtiva("Pagamento com Troca"))
-        {
+        if (!BLLFeatureManager.featureEstaAtiva("Pagamento com Troca")) {
             btnTroca.setVisible(false);
         }
         //controle da feature Orçamentos
-        if(!BLLFeatureManager.featureEstaAtiva("Pagamento com Vale Presente"))
-        {
+        if (!BLLFeatureManager.featureEstaAtiva("Pagamento com Vale Presente")) {
             btnValePresente.setVisible(false);
         }
         //COLOCAR O COMANDO SQL NA AÇÂO DE CADA BOTÂO CLICADO.
-    }    
-
+    }
 
     @FXML
     void btnVoltar_click(ActionEvent event) {
         myController.setScreen(ScreensFramework.telaVenda);
     }
-    
-    public void setVenda(Venda venda){
-        this.venda = venda; 
+
+    public void setVenda(Venda venda) {
+        this.venda = venda;
     }
-    
-    @FXML protected void btnDinheiroClicked(ActionEvent event) {
+
+    @FXML
+    protected void btnDinheiroClicked(ActionEvent event) {
+        String valor = null;
         Pagamentovenda pagamento = new Pagamentovenda();
         Tipopagamento tipo = new Tipopagamento();
-        tipo.setDescricao("Dinheiro");
+        valor = JOptionPane.showInputDialog("Qual o valor a ser pago em dinheiro?");
+        lblTotalPago.setText(NumberFormat.getCurrencyInstance().format(Double.parseDouble(valor)));
+        BLLVenda.valorPago += Double.parseDouble(valor);
+        tipo.setDescricao(tipo.getDescricao() + "/Pagamento com Dinheiro/");
         pagamento.setTipopagamento(tipo);
         pagamento.setNumeroParcelas(0);
+        if (lblTotalPago.getText().equals(lblTotalPagar.getText())) {
+            JOptionPane.showMessageDialog(null, "Pagamento total efetuado.");
+            myController.setScreen(ScreensFramework.telaCaixa);
+        } else {
+            JOptionPane.showMessageDialog(null, valor + " reais pagos em dinheiro");
+        }
     }
-    
-    
-    
-    @FXML protected void btnChequeClicked(ActionEvent event) {
+
+    @FXML
+    protected void btnChequeClicked(ActionEvent event) {
+        String valor = null;
         Pagamentovenda pagamento = new Pagamentovenda();
         Tipopagamento tipo = new Tipopagamento();
-        tipo.setDescricao("Cheque");
+        valor = JOptionPane.showInputDialog("Qual o valor a ser pago em cheque?");
+        lblTotalPago.setText(NumberFormat.getCurrencyInstance().format(Double.parseDouble(valor)));
+        BLLVenda.valorPago += Double.parseDouble(valor);
+        tipo.setDescricao(tipo.getDescricao() + "/Pagamento com Cheque/");
         pagamento.setTipopagamento(tipo);
         pagamento.setNumeroParcelas(0);
-        
+        if (lblTotalPago.getText().equals(lblTotalPagar.getText())) {
+            JOptionPane.showMessageDialog(null, "Pagamento total efetuado.");
+            myController.setScreen(ScreensFramework.telaCaixa);
+        } else {
+            JOptionPane.showMessageDialog(null, valor + " reais pagos em cheque");
+        }
+
     }
-    
-    @FXML 
+
+    @FXML
     protected void btnCartaoClicked(ActionEvent event) {
         Pagamentovenda pagamento = new Pagamentovenda();
         Tipopagamento tipo = new Tipopagamento();
         myController.setScreen(ScreensFramework.telaCaixa);
         Object[] opcoes = {"Cartão de crédito", "Cartão de débito"};
-                int n = JOptionPane.showOptionDialog(null, "Qual o tipo de cartão", "Escolha o tipo de cartão:", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
-                if(n==0)
-                    myController.setScreen(ScreensFramework.telaPagamentoCartao);
-                if(n==1){
-                    tipo.setDescricao("Cartão de Débito");
-                    pagamento.setTipopagamento(tipo);
-                    pagamento.setNumeroParcelas(0);
-                }
+        int n = JOptionPane.showOptionDialog(null, "Qual o tipo de cartão", "Escolha o tipo de cartão:", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
+        if (n == 0) {
+            myController.setScreen(ScreensFramework.telaPagamentoCartao);
+        }
+        if (n == 1) {
+            String valor = null;
+            valor = JOptionPane.showInputDialog("Qual o valor a ser pago por Cartão de Débito?");
+            lblTotalPago.setText(NumberFormat.getCurrencyInstance().format(Double.parseDouble(valor)));
+            BLLVenda.valorPago += Double.parseDouble(valor);
+            tipo.setDescricao(tipo.getDescricao() + "/Pagamento com Cartão de débito/");
+            pagamento.setTipopagamento(tipo);
+            pagamento.setNumeroParcelas(0);
+            if (lblTotalPago.getText().equals(lblTotalPagar.getText())) {
+                JOptionPane.showMessageDialog(null, "Pagamento total efetuado.");
+                myController.setScreen(ScreensFramework.telaCaixa);
+            } else {
+                JOptionPane.showMessageDialog(null, valor + " reais pagos por Cartão de Débito.");
+            }
+        }
     }
-    
-    @FXML protected void btnTrocaClicked(ActionEvent event) {
-        
-        
+
+    @FXML
+    protected void btnTrocaClicked(ActionEvent event) {
+
     }
-    
-    @FXML protected void btnValePresenteClicked(ActionEvent event) {
-        
-        
+
+    @FXML
+    protected void btnValePresenteClicked(ActionEvent event) {
+
     }
-    
-    public void initListeners(){
+
+    public void initListeners() {
         btnDinheiro.setOnMouseClicked(new EventHandler<MouseEvent>() {
-           @Override
+            @Override
             public void handle(MouseEvent event) {
+                String valor = null;
                 Pagamentovenda pagamento = new Pagamentovenda();
                 Tipopagamento tipo = new Tipopagamento();
-                tipo.setDescricao("Dinheiro");
+                valor = JOptionPane.showInputDialog("Qual o valor a ser pago em dinheiro?");
+                lblTotalPago.setText(NumberFormat.getCurrencyInstance().format(Double.parseDouble(valor)));
+                BLLVenda.valorPago += Double.parseDouble(valor);
+                tipo.setDescricao(tipo.getDescricao() + "/Pagamento com Dinheiro/");
                 pagamento.setTipopagamento(tipo);
                 pagamento.setNumeroParcelas(0);
-                JOptionPane.showMessageDialog(null, "Pagamento efetuado com dinheiro.");
-                myController.setScreen(ScreensFramework.telaCaixa);
-                
+                if (lblTotalPago.getText().equals(lblTotalPagar.getText())) {
+                    JOptionPane.showMessageDialog(null, "Pagamento total efetuado.");
+                    myController.setScreen(ScreensFramework.telaCaixa);
+                } else {
+                    JOptionPane.showMessageDialog(null, valor + " reais pagos em dinheiro");
+                }
+
             }
         });
-        
-       
-        
+
         btnCheque.setOnMouseClicked(new EventHandler<MouseEvent>() {
-           @Override
+            @Override
             public void handle(MouseEvent event) {
+                String valor = null;
                 Pagamentovenda pagamento = new Pagamentovenda();
                 Tipopagamento tipo = new Tipopagamento();
-                tipo.setDescricao("Cheque");
+                valor = JOptionPane.showInputDialog("Qual o valor a ser pago em cheque?");
+                lblTotalPago.setText(NumberFormat.getCurrencyInstance().format(Double.parseDouble(valor)));
+                BLLVenda.valorPago += Double.parseDouble(valor);
+                tipo.setDescricao(tipo.getDescricao() + "/Pagamento com Cheque/");
                 pagamento.setTipopagamento(tipo);
                 pagamento.setNumeroParcelas(0);
-                JOptionPane.showMessageDialog(null, "Pagamento efetuado com cheque.");
-                myController.setScreen(ScreensFramework.telaCaixa);
+                if (lblTotalPago.getText().equals(lblTotalPagar.getText())) {
+                    JOptionPane.showMessageDialog(null, "Pagamento total efetuado.");
+                    myController.setScreen(ScreensFramework.telaCaixa);
+                } else {
+                    JOptionPane.showMessageDialog(null, valor + " reais pagos em cheque");
+                }
             }
         });
-        
- 
+
         btnCartao.setOnMouseClicked(new EventHandler<MouseEvent>() {
-           @Override
+            @Override
             public void handle(MouseEvent event) {
                 Pagamentovenda pagamento = new Pagamentovenda();
                 Tipopagamento tipo = new Tipopagamento();
                 Object[] opcoes = {"Cartão de crédito", "Cartão de débito"};
                 int n = JOptionPane.showOptionDialog(null, "Qual o tipo de cartão", "Escolha o tipo de cartão:", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
-                if(n == 0){
+                if (n == 0) {
                     myController.setScreen(ScreensFramework.telaPagamentoCartao);
                 }
-                if(n==1){
-                String numero = JOptionPane.showInputDialog("Qual o número do cartão?");
-                JOptionPane.showMessageDialog(null, "Pagamento efetuado com cartão de débito.");
-                myController.setScreen(ScreensFramework.telaCaixa);
+                if (n == 1) {
+                    String numero = JOptionPane.showInputDialog("Qual o número do cartão?");
+                    JOptionPane.showMessageDialog(null, "Pagamento efetuado com cartão de débito.");
+                    myController.setScreen(ScreensFramework.telaCaixa);
                 }
             }
         });
-        
+
         btnTroca.setOnMouseClicked(new EventHandler<MouseEvent>() {
-           @Override
-            public void handle(MouseEvent event) {
-                
-                
-            }
-        });
-        
-        btnValePresente.setOnMouseClicked(new EventHandler<MouseEvent>() {
-           @Override
-            public void handle(MouseEvent event) {
-                
-                
-            }
-        });
-        
-        /*btnCartao.setOnAction(new EventHandler<ActionEvent>(){
             @Override
-            public void handle(ActionEvent event) {
-                System.out.println("entrei3");
-                Pagamentovenda pagamento = new Pagamentovenda();
-                Tipopagamento tipo = new Tipopagamento();
-                Object[] opcoes = {"Cartão de crédito", "Cartão de débito"};
-                int n = JOptionPane.showOptionDialog(null, "Qual o tipo de cartão", "Escolha o tipo de cartão:", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
-                myController.setScreen(ScreensFramework.telaPagamentoCartao);
+            public void handle(MouseEvent event) {
+
             }
-        });*/
+        });
+
+        btnValePresente.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+
+        /*btnCartao.setOnAction(new EventHandler<ActionEvent>(){
+         @Override
+         public void handle(ActionEvent event) {
+         System.out.println("entrei3");
+         Pagamentovenda pagamento = new Pagamentovenda();
+         Tipopagamento tipo = new Tipopagamento();
+         Object[] opcoes = {"Cartão de crédito", "Cartão de débito"};
+         int n = JOptionPane.showOptionDialog(null, "Qual o tipo de cartão", "Escolha o tipo de cartão:", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
+         myController.setScreen(ScreensFramework.telaPagamentoCartao);
+         }
+         });*/
     }
-    
+
     @Override
     public void setScreenParent(ScreensController screenPage) {
-        myController = screenPage;    
+        myController = screenPage;
     }
-    
+
 }

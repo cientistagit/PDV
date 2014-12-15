@@ -13,6 +13,7 @@ import model.Venda;
  */
 public class BLLVenda {
     public static Venda ultimaVenda = null;
+    public static Double valorPago = 0.0;
     
     
     

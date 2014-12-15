@@ -8,6 +8,7 @@ package controller;
 import controller.frameworkGerenciaTela.ControlledScreen;
 import controller.frameworkGerenciaTela.ScreensController;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -22,6 +23,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javax.swing.JOptionPane;
+import model.BLL.BLLVenda;
 import model.Pagamentovenda;
 import model.Tipopagamento;
 import view.ScreensFramework;
@@ -47,7 +49,6 @@ public class PagamentoCartaoController implements Initializable, ControlledScree
     }
     
     void btnPagar_click(ActionEvent event) {
-                    pagamento.setTipopagamento(tipo);
                     if(combo.getValue() != null && !combo.getValue().toString().isEmpty()){
                         if(combo.getValue().toString().equals("à vista"))
                              pagamento.setNumeroParcelas(0);
@@ -64,7 +65,21 @@ public class PagamentoCartaoController implements Initializable, ControlledScree
                         if(combo.getValue().toString().equals("12x"))
                              pagamento.setNumeroParcelas(12);
                     }
-                    System.out.println(pagamento.getNumeroParcelas());
+                    String valor = null;
+                    Double total = BLLVenda.ultimaVenda.getValorTotal();
+                    valor = JOptionPane.showInputDialog("Qual o valor a ser pago por Cartão de Débito?");     
+                    BLLVenda.valorPago += Double.parseDouble(valor);
+                    tipo.setDescricao(tipo.getDescricao() + "/Pagamento com Cartão de Crédito/");
+                    pagamento.setTipopagamento(tipo);
+                    pagamento.setNumeroParcelas(0);
+                    if(total == BLLVenda.valorPago){
+                        JOptionPane.showMessageDialog(null, "Pagamento total efetuado.");
+                        myController.setScreen(ScreensFramework.telaCaixa);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, valor +" reais pagos por Cartão de Crédito");
+                        myController.setScreen(ScreensFramework.telaPagamento);
+                    }
         JOptionPane.showMessageDialog(null, "Pagamento efetuado com cartão de crédito.");
         myController.setScreen(ScreensFramework.telaCaixa);
     }
