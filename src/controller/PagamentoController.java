@@ -92,7 +92,6 @@ public class PagamentoController implements Initializable, ControlledScreen {
     
     @FXML 
     protected void btnCartaoClicked(ActionEvent event) {
-        System.out.println("entrei1");
         Pagamentovenda pagamento = new Pagamentovenda();
         Tipopagamento tipo = new Tipopagamento();
         myController.setScreen(ScreensFramework.telaCaixa);
@@ -100,6 +99,11 @@ public class PagamentoController implements Initializable, ControlledScreen {
                 int n = JOptionPane.showOptionDialog(null, "Qual o tipo de cartão", "Escolha o tipo de cartão:", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
                 if(n==0)
                     myController.setScreen(ScreensFramework.telaPagamentoCartao);
+                if(n==1){
+                    tipo.setDescricao("Cartão de Débito");
+                    pagamento.setTipopagamento(tipo);
+                    pagamento.setNumeroParcelas(0);
+                }
     }
     
     @FXML protected void btnTrocaClicked(ActionEvent event) {
