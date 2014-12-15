@@ -20,6 +20,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javax.swing.JOptionPane;
+import model.Pagamentovenda;
+import model.Tipopagamento;
 import view.ScreensFramework;
 
 /**
@@ -28,7 +30,7 @@ import view.ScreensFramework;
  * @author comum
  */
 public class PagamentoCartaoController implements Initializable, ControlledScreen {
-
+   
     @FXML private Button btnMaster;
     @FXML private Button btnVisa;   
     @FXML private Button btnVoltar;   
@@ -41,6 +43,11 @@ public class PagamentoCartaoController implements Initializable, ControlledScree
     }
     
     void btnPagar_click(ActionEvent event) {
+        Pagamentovenda pagamento = new Pagamentovenda();
+        Tipopagamento tipo = new Tipopagamento();
+        tipo.setDescricao("Cartão de Crédito");
+                    pagamento.setTipopagamento(tipo);
+                    pagamento.setNumeroParcelas(0);
         JOptionPane.showMessageDialog(null, "Pagamento efetuado com cartão de crédito.");
         myController.setScreen(ScreensFramework.telaCaixa);
     }
