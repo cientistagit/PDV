@@ -67,7 +67,7 @@ public class PagamentoCartaoController implements Initializable, ControlledScree
                     }
                     String valor = null;
                     Double total = BLLVenda.ultimaVenda.getValorTotal();
-                    valor = JOptionPane.showInputDialog("Qual o valor a ser pago por Cartão de Débito?");     
+                    valor = JOptionPane.showInputDialog("Qual o valor a ser pago por Cartão de Crédito?");     
                     BLLVenda.valorPago += Double.parseDouble(valor);
                     tipo.setDescricao(tipo.getDescricao() + "/Pagamento com Cartão de Crédito/");
                     pagamento.setTipopagamento(tipo);
