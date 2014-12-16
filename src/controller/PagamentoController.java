@@ -66,7 +66,12 @@ public class PagamentoController implements Initializable, ControlledScreen {
         initListeners();
         this.venda = BLLVenda.ultimaVenda;
         lblTotalPagar.setText(NumberFormat.getCurrencyInstance().format(venda.getValorTotal()));
-        lblTotalPago.setText(NumberFormat.getCurrencyInstance().format(0)); //total de pagamentos parciais.    
+        if(BLLVenda.valorPago == 0.0){
+            lblTotalPago.setText(NumberFormat.getCurrencyInstance().format(0));
+        } //total de pagamentos parciais.  
+        else{
+            lblTotalPago.setText(NumberFormat.getCurrencyInstance().format(BLLVenda.valorPago));
+        }
 
         //controle da feature cadastro de clientes
         if (!BLLFeatureManager.featureEstaAtiva("Pagamento com Troca")) {
