@@ -18,6 +18,7 @@ public class Produto  implements java.io.Serializable {
      private String descricao;
      private BigDecimal valorCusto;
      private BigDecimal valorVenda;
+     private Integer quantidade;
      private Set produtogrades = new HashSet(0);
      private Set vendaitems = new HashSet(0);
 
@@ -75,6 +76,15 @@ public class Produto  implements java.io.Serializable {
     public void setValorVenda(BigDecimal valorVenda) {
         this.valorVenda = valorVenda;
     }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+    }
+    
     public Set getProdutogrades() {
         return this.produtogrades;
     }

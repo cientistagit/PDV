@@ -5,14 +5,19 @@
  */
 package controller;
 
+import com.itextpdf.text.DocumentException;
 import controller.frameworkGerenciaTela.ControlledScreen;
 import controller.frameworkGerenciaTela.ScreensController;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javax.swing.JOptionPane;
 import view.ScreensFramework;
 
 /**
@@ -23,6 +28,7 @@ import view.ScreensFramework;
 public class MercadoriasController implements Initializable, ControlledScreen {
 
     ScreensController myController;
+    PdfController pdf = new PdfController();
     
     @FXML private Button btnRelEntradas;
     @FXML private Button btnRelSaidas;
@@ -31,7 +37,13 @@ public class MercadoriasController implements Initializable, ControlledScreen {
     
     @FXML 
     void btnRelEstoque_click(ActionEvent event) {
-
+        try {
+            pdf.createPdf(pdf.ESTOQUE_TYPE);
+            JOptionPane.showMessageDialog(null, "Relatorio de Estoque Gerado com Sucesso");
+        } catch (Exception ex) {
+            Logger.getLogger(MercadoriasController.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro ao Gerar Relatorio de Estoque");
+        }
     }
 
     @FXML

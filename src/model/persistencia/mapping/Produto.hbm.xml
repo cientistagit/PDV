@@ -20,6 +20,11 @@
         <property name="valorVenda" type="big_decimal">
             <column name="valor_venda" precision="10" not-null="true" />
         </property>
+        
+        <property name="quantidade" type="java.lang.Integer">
+            <column name="quantidade" not-null="true" />
+        </property>
+        
         <set name="produtogrades" table="produtograde" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="produto_id" not-null="true" />
