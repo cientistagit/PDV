@@ -8,14 +8,18 @@ package controller;
 import controller.frameworkGerenciaTela.ControlledScreen;
 import controller.frameworkGerenciaTela.ScreensController;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javax.swing.JOptionPane;
+import model.BLL.BLLFeatureManager;
+import model.BLL.BLLVenda;
 import model.Pagamentovenda;
 import model.Tipopagamento;
 import model.Venda;
@@ -30,41 +34,47 @@ public class PagamentoController implements Initializable, ControlledScreen {
     
     ScreensController myController;
     
-    public Venda venda = new Venda();
+    public Venda venda = null;
     
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
+    @FXML private ResourceBundle resources;
+    @FXML private URL location;   
+    @FXML private Button btnCartao;
+    @FXML private Button btnDinheiro;
+    @FXML private Button btnCheque;   
+    @FXML private Button btnVoltar;
+    @FXML private Button btnTroca;
+    @FXML private Button btnValePresente;
+    @FXML private Label lblTotalPagar;
+    @FXML private Label lblTotalPago;    
     
-    @FXML
-    private Button btnCartao;
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        
+        initListeners();
+        this.venda = BLLVenda.ultimaVenda;
+        lblTotalPagar.setText(NumberFormat.getCurrencyInstance().format(venda.getValorTotal()));
+        lblTotalPago.setText(NumberFormat.getCurrencyInstance().format(0)); //total de pagamentos parciais.    
+        
+        //controle da feature cadastro de clientes
+        if(!BLLFeatureManager.featureEstaAtiva("Pagamento com Troca"))
+        {
+            btnTroca.setVisible(false);
+        }
+        //controle da feature Orçamentos
+        if(!BLLFeatureManager.featureEstaAtiva("Pagamento com Vale Presente"))
+        {
+            btnValePresente.setVisible(false);
+        }
+        //COLOCAR O COMANDO SQL NA AÇÂO DE CADA BOTÂO CLICADO.
+    }    
 
-    @FXML
-    private Button btnDinheiro;
-
-    @FXML
-    private Button btnCheque;
-    
-    @FXML
-    private Button btnVoltar;
-
-    @FXML
-    private Button btnTroca;
-
-    @FXML
-    private Button btnValePresente;
 
     @FXML
     void btnVoltar_click(ActionEvent event) {
         myController.setScreen(ScreensFramework.telaVenda);
-    }
-
-
-    @FXML
-    void initialize() {
-        
     }
     
     public void setVenda(Venda venda){
@@ -193,18 +203,7 @@ public class PagamentoController implements Initializable, ControlledScreen {
             }
         });*/
     }
-
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        initListeners();
-        
-        //COLOCAR O COMANDO SQL NA AÇÂO DE CADA BOTÂO CLICADO.
-    }    
-
+    
     @Override
     public void setScreenParent(ScreensController screenPage) {
         myController = screenPage;    

@@ -29,7 +29,7 @@ public class ScreensFramework extends Application {
     public static String telaVenda = "venda";
     private static final String telaVendaFile = "/view/Venda.fxml";
     public static String telaPagamento = "pagamento";
-    private static final String telaPagamentoFile = "/view/Pagamento.fxml";
+    public static final String telaPagamentoFile = "/view/Pagamento.fxml";
     public static String telaPagamentoCartao = "pagamentoCartao";
     private static final String telaPagamentoCartaoFile = "/view/PagamentoCartao.fxml";
     public static String telaFeaturesConfig = "featureConfig";
@@ -54,13 +54,13 @@ public class ScreensFramework extends Application {
         //mainContainer.loadScreen(ScreensFramework.telaCaixa, ScreensFramework.telaCaixaFile); // tela carregada ao clicar no botão "caixa"
         mainContainer.loadScreen(ScreensFramework.telaConsulta, ScreensFramework.telaConsultaFile);        
         mainContainer.loadScreen(ScreensFramework.telaVenda, ScreensFramework.telaVendaFile);
-        mainContainer.loadScreen(ScreensFramework.telaPagamento, ScreensFramework.telaPagamentoFile);
+        //mainContainer.loadScreen(ScreensFramework.telaPagamento, ScreensFramework.telaPagamentoFile); //tela carregada na venda ao clicar em pagamento
         mainContainer.loadScreen(ScreensFramework.telaPagamentoCartao, ScreensFramework.telaPagamentoCartaoFile);
         mainContainer.loadScreen(ScreensFramework.telaRelatorios, ScreensFramework.telaRelatoriosFile);
         mainContainer.loadScreen(ScreensFramework.telaRelMercadorias, ScreensFramework.telaRelMercadoriasFile);
         //mainContainer.loadScreen(ScreensFramework.telaFeaturesConfig, ScreensFramework.telaFeaturesConfigFile); //tela carregada ao clicar no botão configurações
         
-        mainContainer.setScreen(ScreensFramework.telaPagamento);
+        mainContainer.setScreen(ScreensFramework.telaLogin);
         
         Group root = new Group();
         root.getChildren().addAll(mainContainer);
