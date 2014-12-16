@@ -7,8 +7,6 @@ package controller;
 
 import controller.frameworkGerenciaTela.ControlledScreen;
 import controller.frameworkGerenciaTela.ScreensController;
-import java.awt.Desktop;
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -35,24 +33,21 @@ public class RelatorioController implements Initializable, ControlledScreen{
 
     @FXML
     void btnRelAtendiemntos_click(ActionEvent event) {
-        geraRelatorio("relatorio produto");
-     
+
     }
 
     @FXML
     void btnRelComissao_click(ActionEvent event) {
-        geraRelatorio("relatorio produto");
+
     }
 
     @FXML
     void btnRelMercadorias_click(ActionEvent event) {
         myController.setScreen(ScreensFramework.telaRelMercadorias);
-        geraRelatorio("relatorio produto");
     }
 
     @FXML
     void btnRelConferenciaCaixa_click(ActionEvent event) {
-        geraRelatorio("relatorio produto");
 
     }    
     
@@ -83,47 +78,11 @@ public class RelatorioController implements Initializable, ControlledScreen{
             btnRelConferenciaCaixa.setVisible(false);
         }
     }    
-  
-   
     
     @Override
     public void setScreenParent(ScreensController screenPage) {
         myController = screenPage;
     }    
- 
     
-    
-    public void geraRelatorio(String relat){
-        
-        
-        
-        try {
-
-                    File pdfFile = new File("C:\\Users\\Xande\\Documents\\NetBeansProjects\\PDV\\relatPdf\\"+ relat+".pdf");
-                    if (pdfFile.exists()) {
-
-                            if (Desktop.isDesktopSupported()) {
-                                    Desktop.getDesktop().open(pdfFile);
-                            } else {
-                                    System.out.println("Awt Desktop não disponível");
-                            }
-
-                    } else {
-                            System.out.println("Ficheiro inexistente");
-                    }
-
-                    System.out.println("Done");
-
-              } catch (Exception ex) {
-                    ex.printStackTrace();
-              }
-
-            }
-
-
-        }
-    
-
-
-
+}
 

@@ -21,7 +21,6 @@ public class Venda  implements java.io.Serializable {
      private String numeroCupomFiscal;
      private Set pagamentovendas = new HashSet(0);
      private Set vendaitems = new HashSet(0);
-     private double valorTotal;
 
     public Venda() {
     }
@@ -106,20 +105,6 @@ public class Venda  implements java.io.Serializable {
     
     public void setVendaitems(Set vendaitems) {
         this.vendaitems = vendaitems;
-    }
-
-    /**
-     * @return the valorTotal
-     */
-    public double getValorTotal() {
-        return valorTotal;
-    }
-
-    /**
-     * @param valorTotal the valorTotal to set
-     */
-    public void setValorTotal(double valorTotal) {
-        this.valorTotal = valorTotal;
     }
 
 
