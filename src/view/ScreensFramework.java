@@ -60,7 +60,7 @@ public class ScreensFramework extends Application {
         mainContainer.loadScreen(ScreensFramework.telaRelMercadorias, ScreensFramework.telaRelMercadoriasFile);
         //mainContainer.loadScreen(ScreensFramework.telaFeaturesConfig, ScreensFramework.telaFeaturesConfigFile); //tela carregada ao clicar no botão configurações
         
-        mainContainer.setScreen(ScreensFramework.telaPagamento);
+        mainContainer.setScreen(ScreensFramework.telaLogin);
         
         Group root = new Group();
         root.getChildren().addAll(mainContainer);

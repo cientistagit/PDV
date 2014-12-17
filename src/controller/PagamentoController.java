@@ -23,6 +23,7 @@ import model.BLL.BLLVenda;
 import model.Pagamentovenda;
 import model.Tipopagamento;
 import model.Venda;
+import model.persistencia.DAOPagamento;
 import view.ScreensFramework;
 
 /**
@@ -99,8 +100,9 @@ public class PagamentoController implements Initializable, ControlledScreen {
         Pagamentovenda pagamento = new Pagamentovenda();
         Tipopagamento tipo = new Tipopagamento();
         valor = JOptionPane.showInputDialog("Qual o valor a ser pago em dinheiro?");
-        lblTotalPago.setText(NumberFormat.getCurrencyInstance().format(Double.parseDouble(valor)));
+        lblTotalPago.setText(NumberFormat.getCurrencyInstance().format(BLLVenda.valorPago + Double.parseDouble(valor)));
         BLLVenda.valorPago += Double.parseDouble(valor);
+        lblTotalPagar.setText(NumberFormat.getCurrencyInstance().format(venda.getValorTotal() - BLLVenda.valorPago));
         tipo.setDescricao(tipo.getDescricao() + "/Pagamento com Dinheiro/");
         pagamento.setTipopagamento(tipo);
         pagamento.setNumeroParcelas(0);
@@ -118,8 +120,9 @@ public class PagamentoController implements Initializable, ControlledScreen {
         Pagamentovenda pagamento = new Pagamentovenda();
         Tipopagamento tipo = new Tipopagamento();
         valor = JOptionPane.showInputDialog("Qual o valor a ser pago em cheque?");
-        lblTotalPago.setText(NumberFormat.getCurrencyInstance().format(Double.parseDouble(valor)));
+        lblTotalPago.setText(NumberFormat.getCurrencyInstance().format(BLLVenda.valorPago + Double.parseDouble(valor)));
         BLLVenda.valorPago += Double.parseDouble(valor);
+        lblTotalPagar.setText(NumberFormat.getCurrencyInstance().format(venda.getValorTotal() - BLLVenda.valorPago));
         tipo.setDescricao(tipo.getDescricao() + "/Pagamento com Cheque/");
         pagamento.setTipopagamento(tipo);
         pagamento.setNumeroParcelas(0);
@@ -145,8 +148,9 @@ public class PagamentoController implements Initializable, ControlledScreen {
         if (n == 1) {
             String valor = null;
             valor = JOptionPane.showInputDialog("Qual o valor a ser pago por Cartão de Débito?");
-            lblTotalPago.setText(NumberFormat.getCurrencyInstance().format(Double.parseDouble(valor)));
+            lblTotalPago.setText(NumberFormat.getCurrencyInstance().format(BLLVenda.valorPago +  Double.parseDouble(valor)));
             BLLVenda.valorPago += Double.parseDouble(valor);
+            lblTotalPagar.setText(NumberFormat.getCurrencyInstance().format(venda.getValorTotal() - BLLVenda.valorPago));
             tipo.setDescricao(tipo.getDescricao() + "/Pagamento com Cartão de débito/");
             pagamento.setTipopagamento(tipo);
             pagamento.setNumeroParcelas(0);
@@ -177,14 +181,17 @@ public class PagamentoController implements Initializable, ControlledScreen {
                 Pagamentovenda pagamento = new Pagamentovenda();
                 Tipopagamento tipo = new Tipopagamento();
                 valor = JOptionPane.showInputDialog("Qual o valor a ser pago em dinheiro?");
-                lblTotalPago.setText(NumberFormat.getCurrencyInstance().format(Double.parseDouble(valor)));
+                lblTotalPago.setText(NumberFormat.getCurrencyInstance().format(BLLVenda.valorPago + Double.parseDouble(valor)));
                 BLLVenda.valorPago += Double.parseDouble(valor);
+                lblTotalPagar.setText(NumberFormat.getCurrencyInstance().format(venda.getValorTotal() - BLLVenda.valorPago));
                 tipo.setDescricao(tipo.getDescricao() + "/Pagamento com Dinheiro/");
                 pagamento.setTipopagamento(tipo);
                 pagamento.setNumeroParcelas(0);
-                if (lblTotalPago.getText().equals(lblTotalPagar.getText())) {
+                if (BLLVenda.valorPago == BLLVenda.ultimaVenda.getValorTotal()) {
                     JOptionPane.showMessageDialog(null, "Pagamento total efetuado.");
-                    myController.setScreen(ScreensFramework.telaCaixa);
+                    DAOPagamento.pagar(venda, pagamento, tipo);
+                    myController.setScreen(ScreensFramework.telaPrincipal);
+                    
                 } else {
                     JOptionPane.showMessageDialog(null, valor + " reais pagos em dinheiro");
                 }
@@ -199,14 +206,16 @@ public class PagamentoController implements Initializable, ControlledScreen {
                 Pagamentovenda pagamento = new Pagamentovenda();
                 Tipopagamento tipo = new Tipopagamento();
                 valor = JOptionPane.showInputDialog("Qual o valor a ser pago em cheque?");
-                lblTotalPago.setText(NumberFormat.getCurrencyInstance().format(Double.parseDouble(valor)));
+                lblTotalPago.setText(NumberFormat.getCurrencyInstance().format(BLLVenda.valorPago + Double.parseDouble(valor)));
                 BLLVenda.valorPago += Double.parseDouble(valor);
+                lblTotalPagar.setText(NumberFormat.getCurrencyInstance().format(venda.getValorTotal() - BLLVenda.valorPago));
                 tipo.setDescricao(tipo.getDescricao() + "/Pagamento com Cheque/");
                 pagamento.setTipopagamento(tipo);
                 pagamento.setNumeroParcelas(0);
-                if (lblTotalPago.getText().equals(lblTotalPagar.getText())) {
+                if (BLLVenda.valorPago == BLLVenda.ultimaVenda.getValorTotal()) {
                     JOptionPane.showMessageDialog(null, "Pagamento total efetuado.");
-                    myController.setScreen(ScreensFramework.telaCaixa);
+                    DAOPagamento.pagar(venda, pagamento, tipo);
+                    myController.setScreen(ScreensFramework.telaPrincipal);
                 } else {
                     JOptionPane.showMessageDialog(null, valor + " reais pagos em cheque");
                 }
@@ -225,7 +234,21 @@ public class PagamentoController implements Initializable, ControlledScreen {
                 }
                 if (n == 1) {
                     String numero = JOptionPane.showInputDialog("Qual o número do cartão?");
-                    JOptionPane.showMessageDialog(null, "Pagamento efetuado com cartão de débito.");
+                    //JOptionPane.showMessageDialog(null, "Pagamento efetuado com cartão de débito.");
+                    String valor = JOptionPane.showInputDialog("Qual o valor a ser pago em débito?");
+                lblTotalPago.setText(NumberFormat.getCurrencyInstance().format(BLLVenda.valorPago + Double.parseDouble(valor)));
+                BLLVenda.valorPago += Double.parseDouble(valor);
+                lblTotalPagar.setText(NumberFormat.getCurrencyInstance().format(venda.getValorTotal() - BLLVenda.valorPago));
+                tipo.setDescricao(tipo.getDescricao() + "/Pagamento com Cartão de Débito/");
+                pagamento.setTipopagamento(tipo);
+                pagamento.setNumeroParcelas(0);
+                if (BLLVenda.valorPago == BLLVenda.ultimaVenda.getValorTotal()) {
+                    JOptionPane.showMessageDialog(null, "Pagamento total efetuado.");
+                    DAOPagamento.pagar(venda, pagamento, tipo);
+                    myController.setScreen(ScreensFramework.telaPrincipal);
+                } else {
+                    JOptionPane.showMessageDialog(null, valor + " reais pagos em Cartão de Débito.");
+                }
                     myController.setScreen(ScreensFramework.telaCaixa);
                 }
             }

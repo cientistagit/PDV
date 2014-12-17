@@ -25,7 +25,7 @@ import org.hibernate.type.StringType;
  * @author comum
  */
 public class DAOPagamento {
-    public void pagar(Venda venda, Pagamentovenda pagvenda, Tipopagamento tipopag) {
+    public static void pagar(Venda venda, Pagamentovenda pagvenda, Tipopagamento tipopag) {
         
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;

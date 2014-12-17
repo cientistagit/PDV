@@ -99,6 +99,8 @@ public class PdfController {
             //document.add(produtos());
 
         } else if (type == ESTOQUE_TYPE) {
+            File f = new File("PDFs");
+            f.mkdir();
             PdfWriter.getInstance(document, new FileOutputStream(ESTOQUE_PATH));
             // step 3
             document.open();

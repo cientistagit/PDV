@@ -73,7 +73,7 @@ public class LoginController implements Initializable, ControlledScreen {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // inicializo a sessão do banco
-        DB.session = NewHibernateUtil.getSessionFactory().getCurrentSession();
+        //DB.session = NewHibernateUtil.getSessionFactory().getCurrentSession();
     }    
 
     @Override

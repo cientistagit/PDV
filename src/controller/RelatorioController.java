@@ -46,6 +46,7 @@ public class RelatorioController implements Initializable, ControlledScreen{
 
     @FXML
     void btnRelMercadorias_click(ActionEvent event) {
+        
         myController.setScreen(ScreensFramework.telaRelMercadorias);
         geraRelatorio("relatorio produto");
     }

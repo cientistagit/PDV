@@ -1,7 +1,7 @@
-0;Cadastro de Clientes;I
-1;Orçamentos;I
-2;Pagamento com Troca;I
-3;Pagamento com Vale Presente;I
+0;Cadastro de Clientes;A
+1;Orçamentos;A  
+2;Pagamento com Troca;A
+3;Pagamento com Vale Presente;A
 4;Pagamento com Cheque;I
 5;Relatório de Comissão de Vendedores;I
 6;Relatório de Mercadorias;I

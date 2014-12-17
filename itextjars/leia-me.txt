@@ -1,0 +1,2 @@
+Adicionar esses Jars ao projeto
+propriedades > bibliotecas > adicionar jars 

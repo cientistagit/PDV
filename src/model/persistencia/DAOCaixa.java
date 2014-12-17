@@ -43,7 +43,7 @@ public class DAOCaixa {
     
     public void fecharCaixa(Caixa caixa) {        
                
-        Session session = NewHibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
         Date dataFechamento = new Date();
         try {
             caixa.setDataFechamento(dataFechamento);            
@@ -85,7 +85,8 @@ public class DAOCaixa {
             query.setParameter("from", fromDate);
             query.setParameter("to", toDate);
            
-            Caixa caixa = (Caixa) query.uniqueResult();            
+            Caixa caixa = (Caixa) query.uniqueResult();  
+            session.close();
             return caixa;
         } catch (Exception ex) {
             System.out.println(ex);

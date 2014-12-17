@@ -1,11 +1,11 @@
---Scripts de atualiza��o do banco PDV
---Adicionar sempre scripts NO FIM DO ARQUIVO
+-- Scripts de atualiza��o do banco PDV
+-- Adicionar sempre scripts NO FIM DO ARQUIVO
 
 
---28/11/14 Marcus Alexandre
+-- 28/11/14 Marcus Alexandre
 ALTER TABLE `pdv`.`caixaaberturafechamento` CHANGE COLUMN `data_fechamento` `data_fechamento` DATETIME NULL;
 
---29/11/14 Marcus Alexandre
+-- 29/11/14 Marcus Alexandre
 ALTER TABLE `pdv`.`colaborador` DROP FOREIGN KEY `fk_colaborador_cargo` ;
 ALTER TABLE `pdv`.`colaborador` CHANGE COLUMN `corgo_id` `cargo_id` INT(11) NOT NULL  , 
   ADD CONSTRAINT `fk_colaborador_cargo`
@@ -16,7 +16,7 @@ ALTER TABLE `pdv`.`colaborador` CHANGE COLUMN `corgo_id` `cargo_id` INT(11) NOT 
 
 ALTER TABLE `pdv`.`caixaaberturafechamento` RENAME TO  `pdv`.`caixa` ;
 
---03/12/14 Marcus Alexandre
+-- 03/12/14 Marcus Alexandre
 -- criação da tabela features
 CREATE  TABLE `pdv`.`features` (
   `id_feature` INT NOT NULL AUTO_INCREMENT ,
@@ -28,4 +28,7 @@ ALTER TABLE `pdv`.`features` RENAME TO  `pdv`.`feature` ;
 ALTER TABLE `pdv`.`feature` CHANGE COLUMN `status` `status` CHAR(1) NOT NULL;
 insert into feature (descricao, status) values("Cadastro de Clientes", 'I');
 
-
+-- 17/12/2014
+-- adicionada coluna quantidade na tabela produto
+ALTER TABLE `pdv`.`produto` ADD COLUMN `quantidade` INT NOT NULL  AFTER `valor_venda` ;
+UPDATE produto SET quantidade = 1;

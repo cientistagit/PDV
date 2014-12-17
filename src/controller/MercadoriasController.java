@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javax.swing.JOptionPane;
+import model.BLL.BLLFeatureManager;
 import view.ScreensFramework;
 
 /**
@@ -67,7 +68,15 @@ public class MercadoriasController implements Initializable, ControlledScreen {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        if(!BLLFeatureManager.featureEstaAtiva("Relatório de Entradas"))
+        {
+            btnRelEntradas.setVisible(false);
+        }
+        //Relatório de Mercadorias
+        if(!BLLFeatureManager.featureEstaAtiva("Relatório de Saidas"))
+        {
+            btnRelSaidas.setVisible(false);
+        }
     }    
     @Override
     public void setScreenParent(ScreensController screenPage) {
