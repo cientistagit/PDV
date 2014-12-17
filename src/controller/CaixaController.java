@@ -61,6 +61,9 @@ public class CaixaController implements Initializable, ControlledScreen {
             lblCaixa.setText("CAIXA ABERTO ");
             this.setExibicaoCaixaAberto(true);
             lblUsuario.setText(BLLUsuario.usuarioLogin.getColaborador().getNome());
+            //mostrar mensagem de confirmação
+            JOptionPane.showMessageDialog(null, "Caixa aberto com sucesso!");
+            btnFecharCaixa.setDisable(false);
         }
     }
 
@@ -71,7 +74,13 @@ public class CaixaController implements Initializable, ControlledScreen {
         {
             btnAbrirCaixa.setDisable(false);
             lblCaixa.setText("CAIXA FECHADO ");
+            //mostrar mensagem de confirmação
+            JOptionPane.showMessageDialog(null, "Caixa fechado com sucesso!");
             this.setExibicaoCaixaAberto(false);            
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Caixa nao foi fechado!");
         }
 
     }

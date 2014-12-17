@@ -6,6 +6,7 @@
 package model.persistencia;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -26,10 +27,10 @@ public class NewHibernateUtil {
       serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();        
       sessionFactory = configuration.buildSessionFactory(serviceRegistry);
       return sessionFactory;
-  }
- 
+  }  
  
     public static SessionFactory getSessionFactory() {
-        return configureSessionFactory();
+        return configureSessionFactory();               
     }
+        
 }

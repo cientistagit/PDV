@@ -17,6 +17,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.BLL.BLLUsuario;
+import model.persistencia.DB;
+import model.persistencia.NewHibernateUtil;
 import view.ScreensFramework;
 
 /**
@@ -70,7 +72,8 @@ public class LoginController implements Initializable, ControlledScreen {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        // inicializo a sessão do banco
+        DB.session = NewHibernateUtil.getSessionFactory().getCurrentSession();
     }    
 
     @Override

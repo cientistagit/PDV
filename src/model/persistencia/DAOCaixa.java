@@ -6,10 +6,8 @@
 package model.persistencia;
 
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import model.Caixa;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -48,13 +46,14 @@ public class DAOCaixa {
         Session session = NewHibernateUtil.getSessionFactory().getCurrentSession();
         Date dataFechamento = new Date();
         try {
-            caixa.setDataFechamento(dataFechamento);
-            session.beginTransaction(); // Abre-se uma transação
+            caixa.setDataFechamento(dataFechamento);            
+            session.beginTransaction();
             session.saveOrUpdate(caixa);      
             session.getTransaction().commit();   // Realiza definitivamente todas as operações pendentes na transação                                    
  
         } catch (Exception ex) {            
             //System.out.println(ex);
+            session.getTransaction().rollback();
             throw ex;
             //JOptionPane.showMessageDialog(null, ex);
             //mensagem de erro

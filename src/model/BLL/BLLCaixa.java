@@ -30,9 +30,7 @@ public class BLLCaixa {
        
         DAOCaixa daoCaixa = new DAOCaixa();
         try{
-            daoCaixa.GravarAbertura(caixa);
-            //mostrar mensagem de confirmação
-            JOptionPane.showMessageDialog(null, "Caixa aberto com sucesso!");
+            daoCaixa.GravarAbertura(caixa);            
             return true;
         }
         catch(Exception ex)
@@ -50,15 +48,12 @@ public class BLLCaixa {
         Caixa caixa = null;
         caixa = daoCaixa.buscarPorData(data);
          try{
-            daoCaixa.fecharCaixa(caixa);
-            //mostrar mensagem de confirmação
-            JOptionPane.showMessageDialog(null, "Caixa fechado com sucesso!");
+            daoCaixa.fecharCaixa(caixa);            
             return true;
         }
         catch(Exception ex)
         {
             System.out.println(ex);
-            JOptionPane.showMessageDialog(null, "Caixa nao foi fechado!");
             return false;
         }
     }
