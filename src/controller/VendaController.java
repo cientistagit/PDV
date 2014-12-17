@@ -25,12 +25,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
+import model.BLL.BLLVenda;
 import model.Colaborador;
 import model.TabelaConsulta;
 import model.TabelaVenda;
@@ -46,71 +43,38 @@ import view.ScreensFramework;
  */
 public class VendaController implements Initializable, ControlledScreen {
 
-    // ##########   Atributos da Tela de Venda  ##########
+    // ##########   Atributos da Tela de Venda  ##########    
+    @FXML private AnchorPane paneVenda;
+    @FXML private TableView<TabelaVenda> tableVenda;
+    @FXML private Label total;
+    @FXML private TextField idProduto;
+    @FXML private TextField desconto;
+    @FXML private TextField valor;
+    @FXML private TextField quantidade;
+    @FXML private TextField descricao;
+    @FXML private CheckBox checkDesconto;
+    @FXML private Button addBt;
+    @FXML private Button delBt;
+    @FXML private Button search;
+    @FXML private Button btnVoltar;
+    @FXML private Button btnPagar;
+    @FXML private Button botConsultar;
+    @FXML private Button botSelecionar;    
     
-    @FXML
-    private AnchorPane paneVenda;
-    @FXML
-    private TableView<TabelaVenda> tableVenda;
-    @FXML
-    private Label total;
-    @FXML
-    private TextField idProduto;
-    @FXML
-    private TextField desconto;
-    @FXML
-    private TextField valor;
-    @FXML
-    private TextField quantidade;
-    @FXML
-    private TextField descricao;
-    @FXML
-    private CheckBox checkDesconto;
-    @FXML
-    private Button addBt;
-    @FXML
-    private Button delBt;
-    @FXML
-    private Button search;
-    @FXML
-    private Button btnVoltar;
-    @FXML
-    private Button btnPagar;
-    @FXML
-    private Button botConsultar;
-    @FXML
-    private Button botSelecionar;
-
-    
-    
-    // ##########   Atributos da Tela de Consulta  ##########
-    
-    @FXML
-    private AnchorPane paneConsulta;
-    @FXML
-    private TableView<TabelaConsulta> tableConsulta;
-    @FXML
-    private TableColumn<TabelaConsulta, Integer> columID;
-    @FXML
-    private TableColumn<TabelaConsulta, String> columDesc;
-    @FXML
-    private TableColumn<TabelaConsulta, String> columTam;
-    @FXML
-    private TableColumn<TabelaConsulta, String> columCor;
-    @FXML
-    private TableColumn<TabelaConsulta, BigDecimal> columPreco;
-    @FXML
-    private TextField txtBuscaCod;
-    @FXML
-    private Button botBuscaCod;
-    @FXML
-    private TextField txtBuscaDesc;
-    @FXML
-    private Button botBuscaDesc;
-    @FXML
-    private Button botVoltar;
-    
-        
+    // ##########   Atributos da Tela de Consulta  ##########    
+    @FXML private AnchorPane paneConsulta;
+    @FXML private TableView<TabelaConsulta> tableConsulta;
+    @FXML private TableColumn<TabelaConsulta, Integer> columID;
+    @FXML private TableColumn<TabelaConsulta, String> columDesc;
+    @FXML private TableColumn<TabelaConsulta, String> columTam;
+    @FXML private TableColumn<TabelaConsulta, String> columCor;
+    @FXML private TableColumn<TabelaConsulta, BigDecimal> columPreco;
+    @FXML private TextField txtBuscaCod;
+    @FXML private Button botBuscaCod;
+    @FXML private TextField txtBuscaDesc;
+    @FXML private Button botBuscaDesc;
+    @FXML private Button botVoltar;
+            
     private Venda venda = new Venda();
     private Produto produto;
     private TabelaConsulta tbConsulta = new TabelaConsulta();
@@ -126,10 +90,9 @@ public class VendaController implements Initializable, ControlledScreen {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        //imagem no botão de pesquisa
         Image imageDecline = new Image(getClass().getResourceAsStream("/Recursos/Search_Magnifier.png"));
         search.setGraphic(new ImageView(imageDecline));
-        
-
         
         // Inicialização das colunas da tabela de consulta
         this.columID.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -143,7 +106,8 @@ public class VendaController implements Initializable, ControlledScreen {
         tableVenda.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("produto"));
         tableVenda.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("quantidade"));
         tableVenda.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<> ("valorTotal") );
-        //
+        
+        //setando os dados da venda
         venda.setDataVenda(new Date(System.currentTimeMillis()));
         venda.setNumeroCupomFiscal(Integer.toString(new Random().nextInt(99999)));
         venda.setUsuario(new Usuario(new Colaborador(null, "0000", "<STANDARD>"), null, null));
@@ -152,9 +116,20 @@ public class VendaController implements Initializable, ControlledScreen {
     }
     
     @FXML
-    void btnPagar_Click(ActionEvent event) {
-        pagamento.setVenda(venda);
-        myController.setScreen(ScreensFramework.telaPagamento);
+    void btnPagar_Click(ActionEvent event) {        
+        
+        venda.setValorTotal(Double.parseDouble(total.getText()));
+        if(!venda.getVendaitems().isEmpty())
+        {
+            BLLVenda.ultimaVenda = venda;
+            
+            //carregar a tela de pagamento
+            ScreensFramework.mainContainer.loadScreen(ScreensFramework.telaPagamento, ScreensFramework.telaPagamentoFile);
+            myController.setScreen(ScreensFramework.telaPagamento);}
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Não há itens para pagamento!","Informação", INFORMATION_MESSAGE);
+        }
     }
 
        
